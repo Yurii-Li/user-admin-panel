@@ -1,7 +1,7 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 
 import {MainLayout} from "./layouts";
-import {LoginPage, OrdersPage} from "./pages";
+import {LoginPage, OrdersPage, Page404} from "./pages";
 
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
                 <Route index element={<Navigate to={"/login"}/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/orders" element={<OrdersPage/>}/>
+                <Route path="*" element={<Page404/>}/>
             </Route>
         </Routes>
     );

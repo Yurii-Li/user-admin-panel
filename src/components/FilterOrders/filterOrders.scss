@@ -1,0 +1,65 @@
+@import '../../styles/variables';
+
+.filter-orders {
+
+  display: flex;
+
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
+  &__input {
+    outline: none;
+    background: #eeeeee;
+    border: none;
+    border-right: 1px solid #ccc;
+    padding: 5px;
+    font-size: 14px;
+    width: 16.66%;
+    margin: 0 auto;
+  }
+
+  &__checkbox-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 10px;
+  }
+
+  label {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__checkbox  {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__checkbox:checked {
+    accent-color: #43A047;
+
+  }
+
+  &__button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+}

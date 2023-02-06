@@ -1,0 +1,16 @@
+@import "variables";
+
+.button {
+  text-transform: uppercase;
+  background: $second-color;
+  outline: 0;
+  border: none;
+  color: #FFFFFF;
+
+  &:hover {
+    background: $hover-color;
+  }
+
+}
+
+

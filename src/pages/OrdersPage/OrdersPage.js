@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDebounce } from "../../hooks";
 
 import { FilterOrders, Footer, Header, OrdersTable, Pagination, Spinner } from "../../components";
-import { adminProfileActions, ordersActions } from "../../redux/slices";
+import {adminProfileActions, groupsActions, ordersActions} from "../../redux/slices";
 
 import "./ordersPage.scss";
 
@@ -21,6 +21,7 @@ const OrdersPage = () => {
 
     useEffect(() => {
         dispatch(adminProfileActions.getAdminProfile());
+        dispatch(groupsActions.getGroups())
     }, [dispatch]);
 
     const { orders, totalCount, loading } = useSelector((state) => state.ordersReducer);

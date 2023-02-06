@@ -1,25 +1,27 @@
-import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import {useForm} from "react-hook-form";
+import {useSelector} from "react-redux";
 
 import "./filterOrders.scss";
 import "../../styles/button.scss";
 
 
-const FilterOrders = ({ setParams }) => {
+const FilterOrders = ({setParams}) => {
 
-    const { adminProfile } = useSelector((state) => state.adminProfileReducer);
+    const {adminProfile} = useSelector((state) => state.adminProfileReducer);
+    const {groups} = useSelector((state) => state.groupsReducer);
 
-    const { register, reset } = useForm({ mode: "all" });
+    const {register, reset} = useForm({mode: "all"});
 
     const resetForm = () => {
         reset();
-        setParams({ target: { name: "reset", value: "reset" } });
+        setParams({target: {name: "reset", value: "reset"}});
     };
 
     return (
         <form className={"filter-orders"} onChange={setParams}>
             <div className={"filter-orders__inputs"}>
-                <input className={"filter-orders__input"} type="text" placeholder={"name"} name={"name"} {...register("name")} />
+                <input className={"filter-orders__input"} type="text" placeholder={"name"}
+                       name={"name"} {...register("name")} />
                 <input
                     className={"filter-orders__input"}
                     type="text"
@@ -41,7 +43,8 @@ const FilterOrders = ({ setParams }) => {
                     name={"phone"}
                     {...register("phone")}
                 />
-                <input className={"filter-orders__input"} type="number" placeholder={"age"} name={"age"} {...register("age")} />
+                <input className={"filter-orders__input"} type="number" placeholder={"age"}
+                       name={"age"} {...register("age")} />
 
                 <select className={"filter-orders__input"} name={"course"} {...register("course")}>
                     <option value={""}>all courses</option>
@@ -75,7 +78,9 @@ const FilterOrders = ({ setParams }) => {
                 </select>
                 <select className={"filter-orders__input"} name={"group"} {...register("group")}>
                     <option value={""}>all groups</option>
-                    <option value={"qwerty"}>qwerty</option>
+                    {
+                        groups.map((group) => <option key={group.id} value={group.name}>{group.name}</option>)
+                    }
                 </select>
 
                 <input

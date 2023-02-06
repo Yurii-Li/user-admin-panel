@@ -1,11 +1,12 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 
-import {adminProfileReducer, ordersReducer} from "./slices";
+import {adminProfileReducer, groupsReducer, ordersReducer} from "./slices";
 
 
 const rootReducer = combineReducers({
     ordersReducer,
     adminProfileReducer,
+    groupsReducer,
 });
 
 const setupStore = () => configureStore({

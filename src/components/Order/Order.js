@@ -1,3 +1,5 @@
+
+
 const Order = ({ order }) => {
     const {
         id,
@@ -54,6 +56,7 @@ const Order = ({ order }) => {
         e.currentTarget.lastElementChild.classList.toggle("orders-table__details_visible");
     };
 
+
     return (
         <div className={"orders-table__row  orders-table__row_hover"} onClick={handleClick}>
             <div className={"orders-table__cell"}>{id}</div>
@@ -72,10 +75,21 @@ const Order = ({ order }) => {
             <div className={"orders-table__cell"}>{convertDate(ifNull(created_at))}</div>
             <div className={"orders-table__cell"}>{ifNull(manager, "name")}</div>
             <div className={"orders-table__details"}>
-                <div>
-                    <div>Comment: {comments.length === 0 ? "null" : comments.map((item) => item.comment)}</div>
-                    <div>UTM: {ifNull(utm)}</div>
+
+                    <div className={"orders-table__details-left"}>
+                        <div className={"orders-table__comment"} >
+                            <div>Comments: </div>
+                            <div>{comments.length === 0 ? "null" : comments.map((item) => `${item.comment}. `)}</div>
+                        </div>
+                        <div>UTM: {ifNull(utm)}</div>
+                    </div>
+                <div className={"orders-table__details-right"}>
+
+
+
+
                 </div>
+
             </div>
         </div>
     );

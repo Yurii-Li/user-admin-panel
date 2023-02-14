@@ -65,14 +65,26 @@
 
   &__details-right {
     display: flex;
+    justify-content: space-between;
     width: 100%;
   }
 
-  &__comment {
+  &__content{
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    width: 40vw;
+    width: 100%;
+    margin: 0 20px;
+
   }
+
+  &__comments{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+
 
 
 }

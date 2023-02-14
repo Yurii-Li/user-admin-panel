@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import { orderService } from "../../services";
+import {orderService} from "../../services";
 
 const initialState = {
     orders: [],
@@ -9,14 +9,35 @@ const initialState = {
     error: null,
 };
 
-const getOrdersByFilter = createAsyncThunk("orders/getOrdersByFilter", async (params, { rejectWithValue }) => {
+const getOrdersByFilter = createAsyncThunk("orders/getOrdersByFilter", async (params, {rejectWithValue}) => {
     try {
-        const { data } = await orderService.getOrdersByFilter(params);
+        const {data} = await orderService.getOrdersByFilter(params);
         return data;
     } catch (e) {
         return rejectWithValue(e.response.data);
     }
 });
+
+const patchOrder = createAsyncThunk("orders/patchOrder", async (params, {rejectWithValue}) => {
+    try {
+        const {data} = await orderService.patchOrder(params.id, params.data);
+        return data;
+
+    } catch (e) {
+        return rejectWithValue(e.response.data);
+    }
+});
+
+const addOrderComment = createAsyncThunk("orders/addOrderComment", async (params, {rejectWithValue}) => {
+    try {
+        const {data} = await orderService.addOrderComment(params.id, params.data);
+        return data;
+
+    } catch (e) {
+        return rejectWithValue(e.response.data);
+    }
+});
+
 
 const ordersSlice = createSlice({
     name: "ordersSlice",
@@ -33,13 +54,39 @@ const ordersSlice = createSlice({
             })
             .addCase(getOrdersByFilter.pending, (state, action) => {
                 state.loading = true;
-            }),
+            })
+
+            .addCase(patchOrder.fulfilled, (state, action) => {
+                state.loading = false;
+
+            })
+            .addCase(patchOrder.rejected, (state, action) => {
+                state.error = action.payload;
+                state.loading = false;
+
+            })
+            .addCase(patchOrder.pending, (state, action) => {
+                state.loading = true;
+            })
+
+            .addCase(addOrderComment.fulfilled, (state, action) => {
+                const order = state.orders.find((order) => order.id === action.payload.order_id);
+                order.comments.unshift(action.payload)
+            })
+            .addCase(addOrderComment.rejected, (state, action) => {
+                state.error = action.payload;
+            })
+
+
+
 });
 
-const { reducer: ordersReducer } = ordersSlice;
+const {reducer: ordersReducer} = ordersSlice;
 
 const ordersActions = {
     getOrdersByFilter,
+    patchOrder,
+    addOrderComment
 };
 
 export {ordersReducer, ordersActions};

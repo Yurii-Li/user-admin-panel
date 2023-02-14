@@ -10,7 +10,7 @@ const FilterOrders = ({setParams}) => {
     const {adminProfile} = useSelector((state) => state.adminProfileReducer);
     const {groups} = useSelector((state) => state.groupsReducer);
 
-    const {register, reset} = useForm({mode: "all"});
+    const {register, reset, } = useForm({mode: "all"});
 
     const resetForm = () => {
         reset();

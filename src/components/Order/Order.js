@@ -1,6 +1,15 @@
+import {ModalForm} from "../ModalForm/ModalForm";
+import {useState} from "react";
+import {CommentForm} from "../CommentForm/CommentForm";
+import {convertDate,ifNull} from "../../helpers";
+import {Comment} from "../Comment/Comment";
+import {ModalComments} from "../ModalComments/ModalComments";
+import {Modal} from "../Modal/Modal";
 
 
-const Order = ({ order }) => {
+
+
+const Order = ({order}) => {
     const {
         id,
         name,
@@ -19,75 +28,69 @@ const Order = ({ order }) => {
         manager,
         comments,
         utm,
+        msg,
     } = order;
 
-    const ifNull = (value, objkey = "") => {
-        return value ? (typeof value === "object" ? value[objkey] : value) : "null";
-    };
 
-    const convertDate = (date) => {
-        if (date === "null") return date;
+    const [tableActive, setTableActive] = useState(false);
 
-        const months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-        ];
+    const [openModalForm, setOpenModalForm] = useState(false);
 
-        const dateArr = date.split("-");
-        const year = dateArr[0];
-        const month = months[+dateArr[1] - 1];
-        const day = dateArr[2].split("T")[0];
-
-        return `${month} ${day}, ${year}`;
-    };
-
-    const handleClick = (e) => {
-        e.currentTarget.classList.toggle("orders-table__row_active");
-        e.currentTarget.lastElementChild.classList.toggle("orders-table__details_visible");
-    };
+    const [openModalComments, setOpenModalComments] = useState(false);
 
 
     return (
-        <div className={"orders-table__row  orders-table__row_hover"} onClick={handleClick}>
-            <div className={"orders-table__cell"}>{id}</div>
-            <div className={"orders-table__cell"}>{ifNull(name)}</div>
-            <div className={"orders-table__cell"}>{ifNull(surname)}</div>
-            <div className={"orders-table__cell"}>{ifNull(email)}</div>
-            <div className={"orders-table__cell"}>{ifNull(phone)}</div>
-            <div className={"orders-table__cell"}>{ifNull(age)}</div>
-            <div className={"orders-table__cell"}>{ifNull(course)}</div>
-            <div className={"orders-table__cell"}>{ifNull(course_format)}</div>
-            <div className={"orders-table__cell"}>{ifNull(course_type)}</div>
-            <div className={"orders-table__cell"}>{ifNull(status)}</div>
-            <div className={"orders-table__cell"}>{ifNull(sum)}</div>
-            <div className={"orders-table__cell"}>{ifNull(alreadyPaid)}</div>
-            <div className={"orders-table__cell"}>{ifNull(group, "name")}</div>
-            <div className={"orders-table__cell"}>{convertDate(ifNull(created_at))}</div>
-            <div className={"orders-table__cell"}>{ifNull(manager, "name")}</div>
-            <div className={"orders-table__details"}>
+        <div
+            className={`orders-table__row  ${openModalForm ? "" : "orders-table__row_hover"} ${tableActive ? "orders-table__row_active" : ""}`}>
+            <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{id}</div>
+            <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(name)}</div>
+            <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(surname)}</div>
+            <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(email)}</div>
+            <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(phone)}</div>
+            <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(age)}</div>
+            <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(course)}</div>
+            <div className={"orders-table__cell"}
+                 onClick={() => setTableActive(!tableActive)}>{ifNull(course_format)}</div>
+            <div className={"orders-table__cell"}
+                 onClick={() => setTableActive(!tableActive)}>{ifNull(course_type)}</div>
+            <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(status)}</div>
+            <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(sum)}</div>
+            <div className={"orders-table__cell"}
+                 onClick={() => setTableActive(!tableActive)}>{ifNull(alreadyPaid)}</div>
+            <div className={"orders-table__cell"}
+                 onClick={() => setTableActive(!tableActive)}>{ifNull(group, "name")}</div>
+            <div className={"orders-table__cell"}
+                 onClick={() => setTableActive(!tableActive)}>{convertDate(ifNull(created_at))}</div>
+            <div className={"orders-table__cell"}
+                 onClick={() => setTableActive(!tableActive)}>{ifNull(manager, "name")}</div>
 
-                    <div className={"orders-table__details-left"}>
-                        <div className={"orders-table__comment"} >
-                            <div>Comments: </div>
-                            <div>{comments.length === 0 ? "null" : comments.map((item) => `${item.comment}. `)}</div>
-                        </div>
-                        <div>UTM: {ifNull(utm)}</div>
-                    </div>
+
+
+            <div className={`orders-table__details ${tableActive ? "orders-table__details_visible" : ""}`}>
+
+                <div className={"orders-table__details-left"}>
+                    <div>Message: {ifNull(msg)}</div>
+                    <div>UTM: {ifNull(utm)}</div>
+                </div>
+
                 <div className={"orders-table__details-right"}>
 
+                    <div className={"orders-table__content"}>
 
+                        <div onClick={()=>setOpenModalComments(true)} className={"orders-table__comments"}>
+                            {
+                                comments.length === 0 ? "null" : comments.slice(0,3).reverse().map((item) => <Comment key={item.id} item={item}/>)
+                            }
+                        </div>
 
+                        <CommentForm id={id}/>
+                        <ModalComments openModalComments={openModalComments} comments={comments}/>
+                    </div>
 
+                    <button onClick={() => setOpenModalForm(true)} className={"orders-table__button"}>Edit</button>
+                    <Modal>
+                        <ModalForm order={order} openModalForm={openModalForm} setOpenModalForm={setOpenModalForm}/>
+                    </Modal>
                 </div>
 
             </div>

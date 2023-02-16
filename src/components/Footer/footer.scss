@@ -1,6 +1,7 @@
 @import "../../styles/variables";
 
-.footer{
+.footer {
   height: 50px;
   background: $main-color;
+  flex-shrink: 0;
 }

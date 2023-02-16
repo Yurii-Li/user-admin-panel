@@ -13,7 +13,7 @@
 
 
     &_active {
-      height: 200px;
+      height: 250px;
     }
 
 
@@ -82,6 +82,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 2px;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
   }
 
 

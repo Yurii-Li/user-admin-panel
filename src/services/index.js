@@ -3,3 +3,4 @@ export * from "./axios.service";
 export * from "./auth.service";
 export * from "./groups.service";
 export * from "./order.service";
+export * from "./users.service";

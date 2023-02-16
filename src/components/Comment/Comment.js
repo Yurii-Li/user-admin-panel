@@ -1,11 +1,22 @@
 import "./comment.scss"
-import {convertDate} from "../../helpers";
+import {convertDate, sliceText} from "../../utils/helpers";
+
+
 
 const Comment = ({item}) => {
     return (
         <div className={"comment"}>
-            <div>{item.comment}</div>
-            <div>{convertDate(item.created_at)}</div>
+            <div className={"comment__text"} >{sliceText(item.comment)}</div>
+
+            <div className={"comment__addition-info"}>
+                <div className={"comment__manager"}>
+                    {item.manager.name} {item.manager.surname}
+                </div>
+                <div className={"comment__date"}>
+                    {convertDate(item.created_at)}
+                </div>
+            </div>
+
         </div>
     );
 };

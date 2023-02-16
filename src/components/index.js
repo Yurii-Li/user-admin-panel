@@ -13,3 +13,4 @@ export * from './OrdersTable/OrdersTable';
 export * from './Pagination/Pagination';
 export * from "./SortOrders/SortOrders"
 export * from './Spinner/Spinner';
+export * from './User/User';

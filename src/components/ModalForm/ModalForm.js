@@ -50,13 +50,8 @@ const ModalForm = ({openModalForm, setOpenModalForm, order}) => {
     }
 
 
-    if (!openModalForm) return null;
 
     return (
-        <div onClick={() => setOpenModalForm(false)} className={"overlay"}>
-
-            <div onClick={(e)=> e.stopPropagation()} >
-
                 <form  className={"modal-form"} onSubmit={handleSubmit(submit)}>
 
                     <div className={"modal-form__inputs"}>
@@ -117,10 +112,6 @@ const ModalForm = ({openModalForm, setOpenModalForm, order}) => {
                     <button type={"button"} onClick={() => setOpenModalForm(false)}>Close</button>
                     <button type={"submit"}>Submit</button>
                 </form>
-            </div>
-
-
-        </div>
     );
 };
 

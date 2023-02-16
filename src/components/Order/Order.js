@@ -1,7 +1,7 @@
 import {ModalForm} from "../ModalForm/ModalForm";
 import {useState} from "react";
 import {CommentForm} from "../CommentForm/CommentForm";
-import {convertDate,ifNull} from "../../helpers";
+import {convertDate,ifNull} from "../../utils/helpers";
 import {Comment} from "../Comment/Comment";
 import {ModalComments} from "../ModalComments/ModalComments";
 import {Modal} from "../Modal/Modal";
@@ -32,6 +32,7 @@ const Order = ({order}) => {
     } = order;
 
 
+    // Подумай над redux-toolkit чи доцільно це виносити туди
     const [tableActive, setTableActive] = useState(false);
 
     const [openModalForm, setOpenModalForm] = useState(false);
@@ -41,7 +42,7 @@ const Order = ({order}) => {
 
     return (
         <div
-            className={`orders-table__row  ${openModalForm ? "" : "orders-table__row_hover"} ${tableActive ? "orders-table__row_active" : ""}`}>
+            className={`orders-table__row  ${openModalForm || openModalComments ? "" : "orders-table__row_hover"} ${tableActive ? "orders-table__row_active" : ""}`}>
             <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{id}</div>
             <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(name)}</div>
             <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(surname)}</div>
@@ -84,12 +85,20 @@ const Order = ({order}) => {
                         </div>
 
                         <CommentForm id={id}/>
-                        <ModalComments openModalComments={openModalComments} comments={comments}/>
+
+
+
                     </div>
 
                     <button onClick={() => setOpenModalForm(true)} className={"orders-table__button"}>Edit</button>
-                    <Modal>
-                        <ModalForm order={order} openModalForm={openModalForm} setOpenModalForm={setOpenModalForm}/>
+
+
+                    <Modal closeModal={setOpenModalComments}  openModal={openModalComments} >
+                        <ModalComments comments={comments} setOpenModalComments={setOpenModalComments} />
+                    </Modal>
+
+                    <Modal closeModal={setOpenModalForm}  openModal={openModalForm} >
+                        <ModalForm order={order} setOpenModalForm={setOpenModalForm} />
                     </Modal>
                 </div>
 

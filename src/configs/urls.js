@@ -8,6 +8,7 @@ const urls = {
     orders: `${baseURL}/orders`,
     adminProfile: `${baseURL}/users/my`,
     groups: `${baseURL}/groups`,
+    users: `${baseURL}/admin/users`,
 };
 
-export { baseURL, urls };
+export {baseURL, urls};

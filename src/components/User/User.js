@@ -1,7 +1,22 @@
 import {convertDate, ifNull} from "../../utils/helpers";
 import "./user.scss"
 
+import {usersService} from "../../services";
+
+
 const User = ({user}) => {
+
+
+
+
+    const activateUser = async () => {
+        const {data} = await usersService.getActivateToken(user.id);
+        await navigator.clipboard.writeText(`${window.location.origin}/activate/${data}`);
+    }
+
+
+
+
     return (
         <div className={"user"}>
             <div>id: {user.profile.id}</div>
@@ -10,6 +25,10 @@ const User = ({user}) => {
             <div>surname: {user.profile.surname}</div>
             <div>is_active: {user.is_active.toString()}</div>
             <div>last_login: {convertDate(ifNull(user.last_login))}</div>
+
+
+            <button onClick={activateUser}>activate</button>
+
         </div>
     );
 };

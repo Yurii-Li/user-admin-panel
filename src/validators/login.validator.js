@@ -1,9 +1,9 @@
-import Joi from "joi";
+import * as yup from "yup"
 
 
-const loginValidator = Joi.object({
-    email: Joi.string().required(),
-    password: Joi.string().required(),
+const loginValidator = yup.object({
+    email: yup.string().required(),
+    password: yup.string().required(),
 })
 
 export {loginValidator};

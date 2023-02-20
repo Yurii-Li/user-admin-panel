@@ -1,4 +1,4 @@
-import {ModalForm} from "../ModalForm/ModalForm";
+import {ClientForm} from "../СlientForm/СlientForm";
 import {useState} from "react";
 import {CommentForm} from "../CommentForm/CommentForm";
 import {convertDate,ifNull} from "../../utils/helpers";
@@ -42,7 +42,7 @@ const Order = ({order}) => {
 
     return (
         <div
-            className={`orders-table__row  ${openModalForm || openModalComments ? "" : "orders-table__row_hover"} ${tableActive ? "orders-table__row_active" : ""}`}>
+            className={`orders-table__row  ${openModalForm || openModalComments || tableActive ? "" : "orders-table__row_hover"} ${tableActive ? "orders-table__row_active" : ""}`}>
             <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{id}</div>
             <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(name)}</div>
             <div className={"orders-table__cell"} onClick={() => setTableActive(!tableActive)}>{ifNull(surname)}</div>
@@ -86,11 +86,9 @@ const Order = ({order}) => {
 
                         <CommentForm id={id}/>
 
-
-
                     </div>
 
-                    <button onClick={() => setOpenModalForm(true)} className={"orders-table__button"}>Edit</button>
+                    <button  onClick={() => setOpenModalForm(true)} className={"orders-table__button"}>Edit</button>
 
 
                     <Modal closeModal={setOpenModalComments}  openModal={openModalComments} >
@@ -98,7 +96,7 @@ const Order = ({order}) => {
                     </Modal>
 
                     <Modal closeModal={setOpenModalForm}  openModal={openModalForm} >
-                        <ModalForm order={order} setOpenModalForm={setOpenModalForm} />
+                        <ClientForm order={order} setOpenModalForm={setOpenModalForm} />
                     </Modal>
                 </div>
 

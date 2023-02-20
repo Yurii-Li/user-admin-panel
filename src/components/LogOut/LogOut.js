@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { authService } from "../../services";
 
 import "./logOut.scss";
-import "../../styles/button.scss";
 
 const LogOut = () => {
     const navigate = useNavigate();
@@ -14,7 +13,7 @@ const LogOut = () => {
     };
 
     return (
-        <button className={"logOut-btn button"} onClick={logOut}>
+        <button className={"logOut-btn"} onClick={logOut}>
             Log Out
         </button>
     );

@@ -1,5 +1,4 @@
 import "./modalComments.scss"
-import {Comment} from "../Comment/Comment";
 import {convertDate} from "../../utils/helpers";
 
 const ModalComments = ({comments,setOpenModalComments}) => {

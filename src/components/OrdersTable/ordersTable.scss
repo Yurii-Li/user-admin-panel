@@ -36,7 +36,7 @@
   }
 
   &__cell {
-    padding: 6px 12px;
+    padding: 5px;
     display: table-cell;
     cursor: pointer;
   }
@@ -65,8 +65,9 @@
 
   &__details-right {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    color: black;
   }
 
   &__content{
@@ -85,11 +86,14 @@
     gap: 2px;
     cursor: pointer;
     background-color: #ffffff;
-    color: black;
     padding: 5px 10px;
     border-radius: 10px;
   }
 
+  &__button{
+    padding: 10px;
+    width: 10%;
+  }
 
 
 

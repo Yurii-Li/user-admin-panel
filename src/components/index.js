@@ -1,5 +1,7 @@
+export * from "./ActivateUserForm/ActivateUserForm"
 export * from "./Comment/Comment"
 export * from "./CommentForm/CommentForm"
+export * from "./CreateUserForm/CreateUserForm"
 export * from "./FilterOrders/FilterOrders"
 export * from "./Footer/Footer"
 export * from './Header/Header';
@@ -7,7 +9,7 @@ export * from './LoginForm/LoginForm';
 export * from "./LogOut/LogOut"
 export * from './Modal/Modal';
 export * from './ModalComments/ModalComments';
-export * from './ModalForm/ModalForm';
+export * from './СlientForm/СlientForm';
 export * from './Order/Order';
 export * from './OrdersTable/OrdersTable';
 export * from './Pagination/Pagination';

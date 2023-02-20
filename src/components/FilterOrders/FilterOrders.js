@@ -2,7 +2,6 @@ import {useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
 
 import "./filterOrders.scss";
-import "../../styles/button.scss";
 
 
 const FilterOrders = ({setParams}) => {
@@ -115,7 +114,7 @@ const FilterOrders = ({setParams}) => {
                     My
                 </label>
 
-                <button className={"filter-orders__button button"} type={"reset"} onClick={() => resetForm()}>
+                <button className={"filter-orders__button"} type={"reset"} onClick={() => resetForm()}>
                     RESET
                 </button>
             </div>

@@ -3,17 +3,10 @@
 .filter-orders {
 
   display: flex;
+  background: #eeeeee;
 
 
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
 
-  input[type=number] {
-    -moz-appearance: textfield;
-  }
 
   &__inputs {
     display: flex;
@@ -21,16 +14,13 @@
 
   }
 
+
   &__input {
-    outline: none;
-    background: #eeeeee;
-    border: none;
-    border-right: 1px solid #ccc;
-    padding: 5px;
-    font-size: 14px;
-    width: 16.66%;
-    margin: 0 auto;
+    padding: 3px 5px;
+    margin: 2px auto;
+    width: calc(16.66% - 6 * 1px )
   }
+
 
   &__checkbox-button {
     display: flex;

@@ -4,10 +4,13 @@ import {ordersActions} from "../../redux/slices";
 
 import "./commentForm.scss";
 
+import {commentValidator} from "../../validators";
+import {yupResolver} from "@hookform/resolvers/yup";
+
 
 const CommentForm = ({id}) => {
 
-    const {register,reset, handleSubmit} = useForm({mode: "all"});
+    const {register,reset, handleSubmit, formState:{isValid, errors}} = useForm({mode: "all", resolver: yupResolver(commentValidator)});
 
     const {adminProfile} = useSelector((state) => state.adminProfileReducer);
 
@@ -29,10 +32,16 @@ const CommentForm = ({id}) => {
 
 
     return (
-            <form onSubmit={handleSubmit(submit)}>
-                <input type="text" {...register("comment")}/>
-                <button type={"submit"}>submit</button>
-            </form>
+
+                <form className={"comment-form"} onSubmit={handleSubmit(submit)}>
+                    <div className={"comment-form__item"} >
+                        <input className={`comment-form__input ${errors.comment && "comment-form__input_red"}` } placeholder={"Comment"} type="text" {...register("comment")}/>
+                        {errors.comment && <div >{errors.comment.message}</div>}
+                    </div>
+
+                    <button className={"comment-form__button"} type={"submit"}>submit</button>
+                </form>
+
 
     );
 };

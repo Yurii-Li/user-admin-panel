@@ -20,6 +20,20 @@ const getUsers = createAsyncThunk("users/getUsers", async (_, {rejectWithValue})
     }
 });
 
+const createUser = createAsyncThunk("users/createUser", async (user, {rejectWithValue}) => {
+    try {
+        const {data} = await usersService.createUser(user);
+        return data;
+    } catch (e) {
+        return rejectWithValue(e.response.data);
+    }
+});
+
+
+
+
+
+
 
 const usersSlice = createSlice({
 name: "users",
@@ -38,7 +52,17 @@ extraReducers: (builder) =>
         })
         .addCase(getUsers.pending, (state, action) => {
             state.loading = true;
-        }),
+        })
+
+        .addCase(createUser.fulfilled, (state, action) => {
+            state.users.unshift(action.payload);
+        })
+        .addCase(createUser.rejected, (state, action) => {
+            state.error = action.payload;
+        })
+
+
+
 });
 
 
@@ -46,6 +70,7 @@ const { reducer: usersReducer } = usersSlice;
 
 const usersActions = {
     getUsers,
+    createUser,
 };
 
 export { usersReducer, usersActions };

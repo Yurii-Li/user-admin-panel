@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { joiResolver } from "@hookform/resolvers/joi";
+import {yupResolver} from "@hookform/resolvers/yup";
 
 import { authService } from "../../services";
 import { loginValidator } from "../../validators";
 
 import "./loginForm.scss";
+
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const LoginForm = () => {
         formState: { isValid },
     } = useForm({
         mode: "all",
-        resolver: joiResolver(loginValidator),
+        resolver: yupResolver(loginValidator),
     });
 
     const submit = async (user) => {

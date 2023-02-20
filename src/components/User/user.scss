@@ -1,8 +1,9 @@
 @import '../../styles/variables.scss';
 
-.user{
-  margin: 20px;
-    padding: 20px;
+.user {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
   border: 2px solid $main-color;
-    border-radius: 10px;
+  border-radius: 10px;
 }

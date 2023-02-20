@@ -1,7 +1,6 @@
 import { LogOut } from "../LogOut/LogOut";
 
 import "./header.scss";
-import "../../styles/button.scss";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
@@ -19,7 +18,7 @@ const Header = () => {
             <div className={"header__content"}>
                 <div className={"header__name"}>{adminProfile?.profile.name}</div>
 
-                <button className={"button"} onClick={()=> navigate("/adminPanel")} >admin</button>
+                <button className={"header__btn"}  onClick={()=> navigate("/adminPanel")} >admin</button>
 
 
                 <LogOut />

@@ -1,7 +1,7 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 
 import {MainLayout} from "./layouts";
-import {AdminPage, LoginPage, OrdersPage, Page404} from "./pages";
+import {ActivateUserPage, AdminPage, LoginPage, OrdersPage, Page404} from "./pages";
 import {PrivateRoute} from "./utils/router";
 
 
@@ -20,6 +20,8 @@ function App() {
 
 
                 <Route path="/adminPanel" element={<AdminPage/>}/>
+
+                <Route path="/activate/:token" element={<ActivateUserPage/>}/>
 
 
                 <Route path="*" element={<Page404/>}/>

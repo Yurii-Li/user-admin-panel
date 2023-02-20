@@ -1,5 +1,5 @@
-import {useEffect} from "react";
-import {Footer, Header, Spinner, User} from "../../components";
+import {useEffect, useState} from "react";
+import {CreateUserForm, Footer, Header, Modal, Spinner, User} from "../../components";
 import {useDispatch, useSelector} from "react-redux";
 import {usersActions} from "../../redux/slices";
 import "./adminPage.scss";
@@ -10,10 +10,12 @@ const AdminPage = () => {
 
     useEffect(()=>{
         dispatch(usersActions.getUsers())
-    },[])
+    },[dispatch])
 
     const {users, loading} = useSelector((state)=>state.usersReducer);
 
+
+    const [openCreateUser, setOpenCreateUser] = useState(false);
 
 
     return (
@@ -21,16 +23,21 @@ const AdminPage = () => {
             <Header />
 
             <div>
-                <button className={"button"}>Create</button>
+                <button onClick={()=> setOpenCreateUser(true)}>Create</button>
             </div>
 
-            {
-                loading ? <Spinner /> : users.map((user)=> <User key={user.id} user={user}/>)
-            }
+            <div className={"admin-page__users"}>
+                {
+                    loading ? <Spinner /> : users.map((user)=> <User key={user.id} user={user}/>)
+                }
+            </div>
+
+
+            <Modal closeModal={setOpenCreateUser}  openModal={openCreateUser}>
+                <CreateUserForm setOpenCreateUser={setOpenCreateUser} />
+            </Modal>
 
             <Footer />
-
-
         </div>
     );
 };

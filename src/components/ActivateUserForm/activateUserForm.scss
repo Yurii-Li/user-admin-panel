@@ -1,0 +1,14 @@
+.activate-user-form {
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px;
+  max-width: 20%;
+
+  &__button{
+    padding: 15px;
+  }
+
+}

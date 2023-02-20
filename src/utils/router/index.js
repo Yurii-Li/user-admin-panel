@@ -1,1 +1,2 @@
-export * from "./privateRoute";
+export * from "./privateRouteAuth";
+export * from "./privateRouteAdmin";

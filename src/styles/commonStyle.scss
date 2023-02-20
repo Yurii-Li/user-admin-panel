@@ -1,13 +1,6 @@
 @import "./variables.scss";
 
-input,
-select
-{
-  outline: none;
-  border: 2px solid $main-color;
-  font-size: 14px;
-  border-radius: 5px;
-}
+
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

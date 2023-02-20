@@ -24,8 +24,12 @@
         font-size: 24px;
     }
 
-    &__btn{
+    &__button{
         padding: 10px;
+    }
+
+    &__button_hidden{
+        display: none;
     }
 
 }

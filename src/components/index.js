@@ -4,6 +4,8 @@ export * from "./CommentForm/CommentForm"
 export * from "./CreateUserForm/CreateUserForm"
 export * from "./FilterOrders/FilterOrders"
 export * from "./Footer/Footer"
+export * from "./FormInput/FormInput"
+export * from "./FormSelect/FormSelect"
 export * from './Header/Header';
 export * from './LoginForm/LoginForm';
 export * from "./LogOut/LogOut"

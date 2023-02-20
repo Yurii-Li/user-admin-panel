@@ -18,7 +18,7 @@ const Header = () => {
             <div className={"header__content"}>
                 <div className={"header__name"}>{adminProfile?.profile.name}</div>
 
-                <button className={"header__btn"}  onClick={()=> navigate("/adminPanel")} >admin</button>
+                <button className={`header__button ${!adminProfile?.is_superuser && "header__button_hidden"}`}  onClick={()=> navigate("/adminPanel")} >admin</button>
 
 
                 <LogOut />

@@ -4,21 +4,13 @@
   background: #FFFFFF;
   max-width: 360px;
   padding: 45px;
-  text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  margin: 0 20px;
     border-radius: 5px;
+  display: flex;
+    flex-direction: column;
+  gap: 10px;
 
-  &__input {
-    outline: none;
-    background: #eeeeee;
-    width: 100%;
-    border: none;
-    margin: 0 0 15px;
-    padding: 15px;
-    font-size: 14px;
-    border-radius: 10px;
-  }
+
 
   &__btn {
     padding: 15px;

@@ -2,7 +2,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 
 import {MainLayout} from "./layouts";
 import {ActivateUserPage, AdminPage, LoginPage, OrdersPage, Page404} from "./pages";
-import {PrivateRoute} from "./utils/router";
+import {PrivateRouteAdmin, PrivateRouteAuth} from "./utils/router";
 
 
 function App() {
@@ -14,12 +14,14 @@ function App() {
 
                 <Route path="/login" element={<LoginPage/>}/>
 
-                <Route element={<PrivateRoute/>}>
+                <Route element={<PrivateRouteAuth/>}>
                     <Route path="/orders" element={<OrdersPage/>}/>
                 </Route>
 
 
-                <Route path="/adminPanel" element={<AdminPage/>}/>
+                <Route element={<PrivateRouteAdmin/>}>
+                    <Route path="/adminPanel" element={<AdminPage/>}/>
+                </Route>
 
                 <Route path="/activate/:token" element={<ActivateUserPage/>}/>
 

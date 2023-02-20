@@ -2,8 +2,14 @@
 
 .user {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   padding: 20px;
   border: 2px solid $main-color;
   border-radius: 10px;
+
+  &__button {
+    padding: 10px;
+  }
+
 }

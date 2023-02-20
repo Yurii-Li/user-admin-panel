@@ -26,16 +26,7 @@
     flex-direction: column;
   }
 
-  &__input{
-    width: 100%;
-    padding: 10px;
-    transition: 1s;
-    margin-top: 5px;
 
-    &_red{
-      border: 2px solid #e00000;
-    }
-  }
 
 
   &__btns{

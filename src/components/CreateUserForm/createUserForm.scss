@@ -1,0 +1,21 @@
+.create-user-form {
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px;
+
+
+
+  &__buttons{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__button{
+    padding: 10px;
+
+  }
+
+}

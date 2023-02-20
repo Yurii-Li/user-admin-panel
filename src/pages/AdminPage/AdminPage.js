@@ -3,16 +3,17 @@ import {CreateUserForm, Footer, Header, Modal, Spinner, User} from "../../compon
 import {useDispatch, useSelector} from "react-redux";
 import {usersActions} from "../../redux/slices";
 import "./adminPage.scss";
-import "../../styles/button.scss";
+
+
 const AdminPage = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(usersActions.getUsers())
-    },[dispatch])
+    }, [dispatch])
 
-    const {users, loading} = useSelector((state)=>state.usersReducer);
+    const {users, loading} = useSelector((state) => state.usersReducer);
 
 
     const [openCreateUser, setOpenCreateUser] = useState(false);
@@ -20,24 +21,25 @@ const AdminPage = () => {
 
     return (
         <div className={"admin-page"}>
-            <Header />
+            <Header/>
 
-            <div>
-                <button onClick={()=> setOpenCreateUser(true)}>Create</button>
+            <div className={"admin-page__content"}>
+                <button className={"admin-page__button"} onClick={() => setOpenCreateUser(true)}>Create</button>
+
+
+                <div className={"admin-page__users"}>
+                    {
+                        loading ? <Spinner/> : users.map((user) => <User key={user.id} user={user}/>)
+                    }
+                </div>
             </div>
 
-            <div className={"admin-page__users"}>
-                {
-                    loading ? <Spinner /> : users.map((user)=> <User key={user.id} user={user}/>)
-                }
-            </div>
 
-
-            <Modal closeModal={setOpenCreateUser}  openModal={openCreateUser}>
-                <CreateUserForm setOpenCreateUser={setOpenCreateUser} />
+            <Modal closeModal={setOpenCreateUser} openModal={openCreateUser}>
+                <CreateUserForm setOpenCreateUser={setOpenCreateUser}/>
             </Modal>
 
-            <Footer />
+            <Footer/>
         </div>
     );
 };

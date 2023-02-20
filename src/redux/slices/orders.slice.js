@@ -39,9 +39,11 @@ const addOrderComment = createAsyncThunk("orders/addOrderComment", async (params
 });
 
 
+
 const ordersSlice = createSlice({
     name: "ordersSlice",
     initialState,
+
     extraReducers: (builder) =>
         builder
             .addCase(getOrdersByFilter.fulfilled, (state, action) => {
@@ -58,6 +60,11 @@ const ordersSlice = createSlice({
 
             .addCase(patchOrder.fulfilled, (state, action) => {
                 state.loading = false;
+                const index = state.orders.findIndex((order) => order.id === action.payload.id);
+                state.orders[index] = {
+                    ...action.payload
+
+                }
 
             })
             .addCase(patchOrder.rejected, (state, action) => {

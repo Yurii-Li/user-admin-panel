@@ -21,6 +21,8 @@ const FilterOrders = ({setParams}) => {
             <div className={"filter-orders__inputs"}>
                 <input className={"filter-orders__input"} type="text" placeholder={"name"}
                        name={"name"} {...register("name")} />
+
+
                 <input
                     className={"filter-orders__input"}
                     type="text"

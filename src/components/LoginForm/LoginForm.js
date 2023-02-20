@@ -6,6 +6,7 @@ import { authService } from "../../services";
 import { loginValidator } from "../../validators";
 
 import "./loginForm.scss";
+import {FormInput} from "../FormInput/FormInput";
 
 
 const LoginForm = () => {
@@ -14,7 +15,7 @@ const LoginForm = () => {
     const {
         handleSubmit,
         register,
-        formState: { isValid },
+        formState: { isValid, errors },
     } = useForm({
         mode: "all",
         resolver: yupResolver(loginValidator),
@@ -28,13 +29,10 @@ const LoginForm = () => {
 
     return (
         <form className={"login-form"} onSubmit={handleSubmit(submit)}>
-            <input className={"login-form__input"} type="text" placeholder="email" {...register("email", { required: true })} />
-            <input
-                className={"login-form__input"}
-                type="text"
-                placeholder="password"
-                {...register("password", { required: true })}
-            />
+
+            <FormInput id={"email"} type={"text"} name={"email"} label={"Email"} register={register} error={errors.email} />
+            <FormInput id={"password"} type={"password"} name={"password"} label={"Password"} register={register} error={errors.password} />
+
             <button className={"login-form__btn button"} disabled={!isValid}>
                 Login
             </button>

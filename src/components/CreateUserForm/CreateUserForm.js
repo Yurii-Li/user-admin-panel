@@ -1,6 +1,8 @@
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {usersActions} from "../../redux/slices";
+import "./createUserForm.scss";
+import {FormInput} from "../FormInput/FormInput";
 
 const CreateUserForm = ({setOpenCreateUser}) => {
 
@@ -13,7 +15,7 @@ const CreateUserForm = ({setOpenCreateUser}) => {
     const submit = (data) => {
         const dataToSend = {
             email: data.email,
-            profile:{
+            profile: {
                 name: data.name,
                 surname: data.surname
             }
@@ -23,27 +25,36 @@ const CreateUserForm = ({setOpenCreateUser}) => {
     }
 
     return (
-        <form style={{backgroundColor: "white"}} onSubmit={handleSubmit(submit)}>
-            <div>
-                <label htmlFor="email">email</label>
-                <input type="text" id="email" {...register("email")} />
-                {errors.email && <div>{errors.email.message}</div>}
-            </div>
+        <form className={"create-user-form"} onSubmit={handleSubmit(submit)}>
 
-            <div>
-                <label htmlFor="name">name</label>
-                <input type="text" id="name" {...register("name")} />
-                {errors.name && <div>{errors.name.message}</div>}
-            </div>
+            {/*<div className={"create-user-form__item"}>*/}
+            {/*    <label htmlFor="email">Email</label>*/}
+            {/*    <input className={"create-user-form__input"} type="text" id="email" {...register("email")} />*/}
+            {/*    {errors.email && <div>{errors.email.message}</div>}*/}
+            {/*</div>*/}
 
-            <div>
-                <label htmlFor="surname">surname</label>
-                <input type="text" id="surname" {...register("surname")} />
-                {errors.surname && <div>{errors.surname.message}</div>}
-            </div>
+            <FormInput label={"Email"} id={"email"} name={"email"} register={register} error={errors.email} type={"text"} />
 
-            <button type="button" onClick={() => setOpenCreateUser(false)}>Cancel</button>
-            <button type="submit">Create</button>
+            {/*<div className={"create-user-form__item"}>*/}
+            {/*    <label htmlFor="name">Name</label>*/}
+            {/*    <input className={"create-user-form__input"} type="text" id="name" {...register("name")} />*/}
+            {/*    {errors.name && <div>{errors.name.message}</div>}*/}
+            {/*</div>*/}
+
+            <FormInput label={"Name"} id={"name"} name={"name"} register={register} error={errors.name} type={"text"}  />
+
+            {/*<div className={"create-user-form__item"}>*/}
+            {/*    <label htmlFor="surname">Surname</label>*/}
+            {/*    <input className={"create-user-form__input"} type="text" id="surname" {...register("surname")} />*/}
+            {/*    {errors.surname && <div>{errors.surname.message}</div>}*/}
+            {/*</div>*/}
+
+            <FormInput label={"Surname"} id={"surname"} name={"surname"} register={register} error={errors.surname} type={"text"}  />
+
+            <div className={"create-user-form__buttons"}>
+                <button className={"create-user-form__button"} type="button" onClick={() => setOpenCreateUser(false)}>Cancel</button>
+                <button className={"create-user-form__button"} type="submit">Create</button>
+            </div>
 
         </form>
 

@@ -1,0 +1,25 @@
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__input{
+    outline: none;
+    background: #eeeeee;
+    width: 100%;
+    border: 2px solid #eeeeee;
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 10px;
+    transition: 1s;
+
+    &_red{
+      border: 2px solid #e00000;
+    }
+  }
+
+
+
+
+
+}

@@ -1,14 +1,11 @@
-import {useParams} from "react-router-dom";
+
 import {ActivateUserForm} from "../../components";
+import "./activateUserPage.scss";
 
 const ActivateUserPage = () => {
 
-
-
-
-
     return (
-        <div>
+        <div className={"activate-user-page"}>
             <ActivateUserForm />
         </div>
     );

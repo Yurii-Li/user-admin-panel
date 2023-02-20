@@ -1,6 +1,6 @@
-@import '../../styles/variables.scss';
+@import "./../../styles/variables.scss";
 
-.page404 {
+.activate-user-page{
   position: absolute;
   top: 0;
   left: 0;
@@ -10,9 +10,4 @@
   justify-content: center;
   align-items: center;
   background-color: $main-color;
-
-  &__img {
-    width: 45%
-  }
-
 }

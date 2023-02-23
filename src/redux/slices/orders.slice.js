@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, current} from "@reduxjs/toolkit";
 
 import {orderService} from "../../services";
 
@@ -18,10 +18,21 @@ const getOrdersByFilter = createAsyncThunk("orders/getOrdersByFilter", async (pa
     }
 });
 
-export const patchOrder = createAsyncThunk("orders/patchOrder", async (params, {rejectWithValue}) => {
+const patchOrder = createAsyncThunk("orders/patchOrder", async (params, {rejectWithValue, getState}) => {
     try {
         const {data} = await orderService.patchOrder(params.id, params.data);
-        return data;
+
+        const {groups} = getState().groupsReducer;
+        const {profile:{name}} = getState().adminProfileReducer.adminProfile;
+
+
+        const group = groups.find((group) => group.id === data.group);
+
+        return {
+            ...data,
+            group: group.name,
+            manager: name,
+        };
 
     } catch (e) {
         return rejectWithValue(e.response.data);
@@ -60,11 +71,9 @@ const ordersSlice = createSlice({
 
             .addCase(patchOrder.fulfilled, (state, action) => {
                 state.loading = false;
-                const index = state.orders.findIndex((order) => order.id === action.payload.id);
-                state.orders[index] = {
-                    ...action.payload
+                const findIndex = state.orders.findIndex((order) => order.id === action.payload.id);
+                state.orders[findIndex] = action.payload;
 
-                }
 
             })
             .addCase(patchOrder.rejected, (state, action) => {

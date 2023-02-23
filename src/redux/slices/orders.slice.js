@@ -18,7 +18,7 @@ const getOrdersByFilter = createAsyncThunk("orders/getOrdersByFilter", async (pa
     }
 });
 
-const patchOrder = createAsyncThunk("orders/patchOrder", async (params, {rejectWithValue}) => {
+export const patchOrder = createAsyncThunk("orders/patchOrder", async (params, {rejectWithValue}) => {
     try {
         const {data} = await orderService.patchOrder(params.id, params.data);
         return data;

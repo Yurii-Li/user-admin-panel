@@ -25,20 +25,8 @@ const ActivateUserForm = () => {
 
     return (
         <form className={"activate-user-form"} onSubmit={handleSubmit(submit)}>
-            {/*<div className={"activate-user-form__item"}>*/}
-            {/*    <label htmlFor="password">Password</label>*/}
-            {/*    <input id={"password"} type="text"  {...register("password")}/>*/}
-            {/*    {errors.password && <div>{errors.password.message}</div>}*/}
-            {/*</div>*/}
 
             <FormInput label={"Password"} id={"password"} name={"password"} register={register} error={errors.password} type={"text"}  />
-
-
-            {/*<div className={"activate-user-form__item"}>*/}
-            {/*    <label htmlFor="confirm-Password">Confirm Password</label>*/}
-            {/*    <input id={"confirm-Password"} type="text"  {...register("confirmPassword")}/>*/}
-            {/*    {errors.confirmPassword && <div>{errors.confirmPassword.message}</div>}*/}
-            {/*</div>*/}
 
             <FormInput label={"Confirm Password"} id={"confirm-Password"} name={"confirmPassword"} register={register} error={errors.confirmPassword} type={"text"}  />
 

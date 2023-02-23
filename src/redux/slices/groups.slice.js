@@ -1,6 +1,6 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, current} from "@reduxjs/toolkit";
 import {groupsService} from "../../services";
-
+import {patchOrder} from "./orders.slice";
 
 const initialState = {
     groups: [],
@@ -23,6 +23,17 @@ const getGroups = createAsyncThunk(
     }
 );
 
+const createGroup = createAsyncThunk( "groups/createGroup", async ( group, {rejectWithValue}) => {
+    try {
+        const {data} = await groupsService.createGroup({name: group});
+
+
+        return data;
+    } catch (e) {
+        return rejectWithValue(e.response.data);
+    }
+});
+
 
 const groupsSlice = createSlice({
     name: "groupsSlice",
@@ -42,8 +53,19 @@ const groupsSlice = createSlice({
             })
             .addCase(getGroups.pending, (state, action) => {
                 state.loading = true;
-
             })
+
+            .addCase(createGroup.fulfilled, (state, action) => {
+                // console.log(action.payload)
+                state.groups.push(action.payload);
+                state.loading = false;
+            })
+            .addCase(createGroup.rejected, (state, action) => {
+                state.error = action.payload;
+            })
+
+
+
 });
 
 
@@ -51,6 +73,7 @@ const {reducer: groupsReducer} = groupsSlice;
 
 const groupsActions = {
     getGroups,
+    createGroup,
 }
 
 export {groupsReducer, groupsActions};

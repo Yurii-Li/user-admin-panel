@@ -7,13 +7,14 @@ const FormSelect = (
         id,
         name,
         options,
+        addLabel = true,
         defaultLabel,
         ...selectProps
     }
 ) => {
     return (
         <div className="form-select">
-            <label htmlFor={id}>{label}</label>
+            {addLabel && <label htmlFor={id}>{label}</label>}
             <select className={"form-select__select"} id={id} name={name} {...register(name)} {...selectProps}>
                 <option value={""}>{defaultLabel}</option>
                 {options.map((option, index) => (

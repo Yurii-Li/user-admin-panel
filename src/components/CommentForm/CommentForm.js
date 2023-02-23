@@ -6,6 +6,7 @@ import "./commentForm.scss";
 
 import {commentValidator} from "../../validators";
 import {yupResolver} from "@hookform/resolvers/yup";
+import {FormInput} from "../FormInput/FormInput";
 
 
 const CommentForm = ({id}) => {
@@ -34,10 +35,9 @@ const CommentForm = ({id}) => {
     return (
 
                 <form className={"comment-form"} onSubmit={handleSubmit(submit)}>
-                    <div className={"comment-form__item"} >
-                        <input className={`comment-form__input ${errors.comment && "comment-form__input_red"}` } placeholder={"Comment"} type="text" {...register("comment")}/>
-                        {errors.comment && <div >{errors.comment.message}</div>}
-                    </div>
+
+
+                    <FormInput addLabel={false} label={"Comment"} id={"comment"} name={"comment"} register={register} error={errors.comment} type={"text"}  />
 
                     <button className={"comment-form__button"} type={"submit"}>submit</button>
                 </form>

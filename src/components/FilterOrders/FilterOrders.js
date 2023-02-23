@@ -2,6 +2,8 @@ import {useForm} from "react-hook-form";
 import {useSelector} from "react-redux";
 
 import "./filterOrders.scss";
+import {FormInput} from "../FormInput/FormInput";
+import {FormSelect} from "../FormSelect/FormSelect";
 
 
 const FilterOrders = ({setParams}) => {
@@ -9,7 +11,7 @@ const FilterOrders = ({setParams}) => {
     const {adminProfile} = useSelector((state) => state.adminProfileReducer);
     const {groups} = useSelector((state) => state.groupsReducer);
 
-    const {register, reset, } = useForm({mode: "all"});
+    const {register, reset,} = useForm({mode: "all"});
 
     const resetForm = () => {
         reset();
@@ -19,88 +21,95 @@ const FilterOrders = ({setParams}) => {
     return (
         <form className={"filter-orders"} onChange={setParams}>
             <div className={"filter-orders__inputs"}>
-                <input className={"filter-orders__input"} type="text" placeholder={"name"}
-                       name={"name"} {...register("name")} />
 
 
-                <input
-                    className={"filter-orders__input"}
-                    type="text"
-                    placeholder={"surname"}
-                    name={"surname"}
-                    {...register("surname")}
-                />
-                <input
-                    className={"filter-orders__input"}
-                    type="text"
-                    placeholder={"email"}
-                    name={"email"}
-                    {...register("email")}
-                />
-                <input
-                    className={"filter-orders__input"}
-                    type="text"
-                    placeholder={"phone"}
-                    name={"phone"}
-                    {...register("phone")}
-                />
-                <input className={"filter-orders__input"} type="number" placeholder={"age"}
-                       name={"age"} {...register("age")} />
+                <div className={"filter-orders__input"}>
+                    <FormInput type="text" label={"Name"} addLabel={false} name={"name"} register={register}/>
+                </div>
 
-                <select className={"filter-orders__input"} name={"course"} {...register("course")}>
-                    <option value={""}>all courses</option>
-                    <option value={"FS"}>FS</option>
-                    <option value={"QACX"}>QACX</option>
-                    <option value={"JCX"}>JCX</option>
-                    <option value={"JSCX"}>JSCX</option>
-                    <option value={"FE"}>FE</option>
-                    <option value={"PCX"}>PCX</option>
-                </select>
-                <select className={"filter-orders__input"} name={"course_format"} {...register("course_format")}>
-                    <option value={""}>all formats</option>
-                    <option value={"static"}>static</option>
-                    <option value={"online"}>online</option>
-                </select>
-                <select className={"filter-orders__input"} name={"course_type"} {...register("course_type")}>
-                    <option value={""}>all types</option>
-                    <option value={"pro"}>pro</option>
-                    <option value={"minimal"}>minimal</option>
-                    <option value={"premium"}>premium</option>
-                    <option value={"incubator"}>incubator</option>
-                    <option value={"vip"}>vip</option>
-                </select>
-                <select className={"filter-orders__input"} name={"status"} {...register("status")}>
-                    <option value={""}>all statuses</option>
-                    <option value={"В работе"}>В работе</option>
-                    <option value={"Новый"}>Новый</option>
-                    <option value={"Согласен"}>Согласен</option>
-                    <option value={"Не согласен"}>Не согласен</option>
-                    <option value={"Дубляж"}>Дубляж</option>
-                </select>
-                <select className={"filter-orders__input"} name={"group"} {...register("group")}>
-                    <option value={""}>all groups</option>
-                    {
-                        groups.map((group) => <option key={group.id} value={group.name}>{group.name}</option>)
-                    }
-                </select>
 
-                <input
-                    type={"text"}
-                    placeholder={"start_date"}
-                    className={"filter-orders__input"}
-                    name={"start_date"}
-                    onFocus={(e) => (e.target.type = "date")}
-                    {...register("start_date")}
-                />
 
-                <input
-                    type={"text"}
-                    placeholder={"end_date"}
-                    className={"filter-orders__input"}
-                    name={"end_date"}
-                    onFocus={(e) => (e.target.type = "date")}
-                    {...register("end_date")}
-                />
+                <div className={"filter-orders__input"}>
+                    <FormInput type="text" label={"Surname"} addLabel={false} name={"surname"} register={register}/>
+                </div>
+
+
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormInput type="text" label={"Email"} addLabel={false} name={"email"} register={register}/>
+                </div>
+
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormInput type="text" label={"Phone"} addLabel={false} name={"phone"} register={register}/>
+                </div>
+
+
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormInput type="number" label={"Age"} addLabel={false} name={"age"} register={register}/>
+                </div>
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormSelect label={"Course"} addLabel={false} name={"course"} register={register}
+                                options={["FS", "QACX", "JCX", "JSCX", "FE", "PCX"]} defaultLabel={"all courses"}/>
+                </div>
+
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormSelect label={"Course format"} addLabel={false} name={"course_format"} register={register} options={["static", "online"]} defaultLabel={"all formats"}/>
+                </div>
+
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormSelect label={"Course type"} addLabel={false} name={"course_type"} register={register} options={["pro", "minimal", "premium", "incubator", "vip"]} defaultLabel={"all types"}/>
+                </div>
+
+
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormSelect label={"Status"} addLabel={false} name={"status"} register={register} options={["В работе", "Новый", "Согласен", "Не согласен", "Дубляж"]} defaultLabel={"all statuses"}/>
+                </div>
+
+
+
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormSelect label={"Group"} addLabel={false} name={"group"} register={register} options={groups.map((group) => ({value: group.id, label: group.name}))} defaultLabel={"all groups"}/>
+                </div>
+
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormInput type="text" label={"Start date"} addLabel={false} name={"start_date"} register={register}
+                               onFocus={(e) => (e.target.type = "date")}/>
+                </div>
+
+
+
+
+                <div className={"filter-orders__input"}>
+                    <FormInput type="text" label={"End date"} addLabel={false} name={"end_date"} register={register} onFocus={(e) => (e.target.type = "date")}/>
+                </div>
+
+
             </div>
 
             <div className={"filter-orders__checkbox-button"}>

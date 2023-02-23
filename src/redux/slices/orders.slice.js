@@ -23,15 +23,15 @@ const patchOrder = createAsyncThunk("orders/patchOrder", async (params, {rejectW
         const {data} = await orderService.patchOrder(params.id, params.data);
 
         const {groups} = getState().groupsReducer;
-        const {profile:{name}} = getState().adminProfileReducer.adminProfile;
+        const {profile} = getState().adminProfileReducer.adminProfile;
 
 
         const group = groups.find((group) => group.id === data.group);
 
         return {
             ...data,
-            group: group.name,
-            manager: name,
+            group,
+            manager: profile,
         };
 
     } catch (e) {
@@ -61,6 +61,7 @@ const ordersSlice = createSlice({
                 state.orders = action.payload.results;
                 state.totalCount = action.payload.count;
                 state.loading = false;
+                console.log(action.payload.results)
             })
             .addCase(getOrdersByFilter.rejected, (state, action) => {
                 state.error = action.payload;
@@ -73,13 +74,11 @@ const ordersSlice = createSlice({
                 state.loading = false;
                 const findIndex = state.orders.findIndex((order) => order.id === action.payload.id);
                 state.orders[findIndex] = action.payload;
-
-
+                console.log(action.payload)
             })
             .addCase(patchOrder.rejected, (state, action) => {
                 state.error = action.payload;
                 state.loading = false;
-
             })
             .addCase(patchOrder.pending, (state, action) => {
                 state.loading = true;

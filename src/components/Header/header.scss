@@ -1,35 +1,42 @@
 @import "../../styles/variables";
 
-.header{
-    background-color: $main-color;
-    color: #fff;
-    padding: 20px;
+.header {
+  background-color: $main-color;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 10px
+  }
 
-    &__logo{
-        font-size: 24px;
-        font-weight: 700;
-        cursor: pointer;
-    }
+  &__name {
+    font-size: 24px;
+  }
 
-    &__content{
-        display: flex;
-        align-items: center;
-        gap: 10px
-    }
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
 
-    &__name{
-        font-size: 24px;
-    }
+  &__button_hidden {
+    display: none;
+  }
 
-    &__button{
-        padding: 10px;
-    }
-
-    &__button_hidden{
-        display: none;
-    }
+  &__button-img {
+    width: 30px;
+  }
 
 }

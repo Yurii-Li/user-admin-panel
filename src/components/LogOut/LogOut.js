@@ -4,6 +4,8 @@ import { authService } from "../../services";
 
 import "./logOut.scss";
 
+import logOutImg from "../../resources/img/logOut.svg";
+
 const LogOut = () => {
     const navigate = useNavigate();
 
@@ -14,7 +16,7 @@ const LogOut = () => {
 
     return (
         <button className={"logOut-btn"} onClick={logOut}>
-            Log Out
+            <img className={"logOut-btn__img"} src={logOutImg} alt="logOut" />
         </button>
     );
 };

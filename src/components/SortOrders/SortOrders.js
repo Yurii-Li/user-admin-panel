@@ -1,5 +1,3 @@
-
-
 const SortOrders = ({ sortByField }) => {
     return (
         <div className={"orders-table__row orders-table__header"}>
@@ -22,4 +20,4 @@ const SortOrders = ({ sortByField }) => {
     );
 };
 
-export {SortOrders};
+export { SortOrders };

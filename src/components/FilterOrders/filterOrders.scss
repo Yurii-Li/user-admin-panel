@@ -45,8 +45,14 @@
   }
 
   &__button {
-    padding: 10px;
-    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
+
+  &__button-img{
+    width: 26px;
   }
 
 }

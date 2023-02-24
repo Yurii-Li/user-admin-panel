@@ -1,18 +1,16 @@
 @import "../../styles/variables.scss";
 
-.comment{
+.comment {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #ccc;
   margin-bottom: 5px;
 
-  &:last-child{
+  &:last-child {
     border-bottom: none;
   }
 
-
-
-  &__addition-info{
+  &__addition-info {
     display: flex;
     gap: 10px;
     justify-content: flex-end;

@@ -1,9 +1,10 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDebounce } from "../../hooks";
 
-import { FilterOrders, Footer, Header, OrdersTable, Pagination, Spinner } from "../../components";
+
+import {ExcelBtn, FilterOrders, Footer, Header, OrdersTable, Pagination, Spinner} from "../../components";
 import {adminProfileActions, groupsActions, ordersActions} from "../../redux/slices";
 
 import "./ordersPage.scss";
@@ -64,7 +65,11 @@ const OrdersPage = () => {
         <div className={"orders-page"}>
             <Header />
 
-            <FilterOrders setParams={setParams} />
+            <div className={"orders-page__management"}>
+                <FilterOrders setParams={setParams} />
+                <ExcelBtn />
+            </div>
+
 
             <div className={"orders-page__content"}>
                 {loading ? (

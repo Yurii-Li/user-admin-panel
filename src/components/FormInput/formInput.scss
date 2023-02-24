@@ -4,7 +4,7 @@
   gap: 5px;
   width: 100%;
 
-  &__input{
+  &__input {
     outline: none;
     background: #eeeeee;
     border: 2px solid #eeeeee;
@@ -13,13 +13,9 @@
     border-radius: 10px;
     transition: 1s;
 
-    &_red{
+    &_red {
       border: 2px solid #e00000;
     }
   }
-
-
-
-
 
 }

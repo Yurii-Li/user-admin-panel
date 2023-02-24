@@ -1,25 +1,31 @@
 import { LogOut } from "../LogOut/LogOut";
 
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import "./header.scss";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+
+import adminImg from "../../resources/img/admin.svg";
 
 const Header = () => {
-
-    const {adminProfile} = useSelector((state) => state.adminProfileReducer);
-
+    const { adminProfile } = useSelector((state) => state.adminProfileReducer);
 
     const navigate = useNavigate();
 
-
     return (
         <header className={"header"}>
-            <div onClick={()=> navigate("/orders")}  className={"header__logo"}> Logo</div>
+            <div onClick={() => navigate("/orders")} className={"header__logo"}>
+                Logo
+            </div>
             <div className={"header__content"}>
                 <div className={"header__name"}>{adminProfile?.profile.name}</div>
 
-                <button className={`header__button ${!adminProfile?.is_superuser && "header__button_hidden"}`}  onClick={()=> navigate("/adminPanel")} >admin</button>
-
+                <button
+                    className={`header__button ${!adminProfile?.is_superuser && "header__button_hidden"}`}
+                    onClick={() => navigate("/adminPanel")}
+                >
+                    <img className={"header__button-img"} src={adminImg} alt="admin" />
+                </button>
 
                 <LogOut />
             </div>

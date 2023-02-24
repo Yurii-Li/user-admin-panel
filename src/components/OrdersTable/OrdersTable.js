@@ -7,6 +7,7 @@ const OrdersTable = ({ orders, sortByField }) => {
     return (
         <div className={"orders-table"}>
             <SortOrders sortByField={sortByField} />
+
             {orders.map((order) => (
                 <Order order={order} key={order.id} />
             ))}

@@ -6,7 +6,7 @@ const ModalComments = ({ comments, setOpenModalComments }) => {
     return (
         <div className={"modal-comments"}>
             <div>{comments.length === 0 ? "null" : comments.map((item) => <View key={item.id} item={item} />).reverse()}</div>
-            <button onClick={() => setOpenModalComments(false)}>Close</button>
+            <button className={"modal-comments__button"} onClick={() => setOpenModalComments(false)}>Close</button>
         </div>
     );
 };

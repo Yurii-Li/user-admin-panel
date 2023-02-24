@@ -1,7 +1,7 @@
 @import "../../styles/variables";
 
 .login-page {
-  height: 100vh;
+  min-height: 100vh;
   background: $main-color;
   display: flex;
   justify-content: center;

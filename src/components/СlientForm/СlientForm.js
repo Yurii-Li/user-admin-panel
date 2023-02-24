@@ -45,34 +45,32 @@ const ClientForm = ({setOpenModalForm, order}) => {
             sum: sum,
             alreadyPaid: alreadyPaid,
             group: group ? group.id : "",
+
         },
         resolver: yupResolver(clientValidator)
     });
 
     const dispatch = useDispatch();
 
+    const [groupInput, setGroupInput] = useState(false);
 
 
 
-    const submit = async (data) => {
-
-
-        // if (groupInput){
-        //     dispatch(groupsActions.createGroup({id, data}))
-        // }else {
-        //     dispatch(ordersActions.patchOrder({id, data}));
-        // }
-
-
-        dispatch(ordersActions.patchOrder({id, data}));
+    const submit =  (data) => {
+        if (groupInput){
+             dispatch(groupsActions.createGroup(data.group));
+        }else {
+            dispatch(ordersActions.patchOrder({id, data}));
+        }
     }
 
-    const [groupInput, setGroupInput] = useState(false);
+
 
 
     const changeGroupInput = (e) => {
         e.preventDefault();
         setGroupInput(!groupInput);
+        !groupInput ? setValue("group", "") : setValue("group", group ? group.id : "");
 
     }
 
@@ -82,29 +80,26 @@ const ClientForm = ({setOpenModalForm, order}) => {
 
             <div className={"client-form__inputs"}>
 
-                <div className={"client-form__item"}>
-                    <FormSelect id={"group"} name={"group"} label={"Group"}
-                                options={groups.map((group) => ({value: group.id, label: group.name}))}
-                                register={register} defaultLabel={"all groups"}/>
 
-                </div>
+                {
+                    groupInput ?
+                        <div className={"client-form__item  client-form__item_row"}>
+                            <FormInput id={"group"} type={"text"} name={"group"} label={"Group"} register={register}
+                                       error={errors.group}/>
+                            <div className={"client-form__input-buttons"}>
+                                <button className={"client-form__input-button"} type={"submit"}>Add</button>
+                                <button className={"client-form__input-button"} onClick={changeGroupInput}>Select</button>
+                            </div>
+                        </div> :
+                        <div className={"client-form__item"}>
+                            <FormSelect id={"group"} name={"group"} label={"Group"}
+                                        options={groups.map((group) => ({value: group.id, label: group.name}))}
+                                        register={register} defaultLabel={"all groups"}/>
 
-                {/*{*/}
-                {/*    groupInput ?*/}
-                {/*        <div className={"client-form__item"}>*/}
-                {/*            <FormInput id={"group"} type={"text"} name={"group"} label={"Group"} register={register}*/}
-                {/*                       error={errors.group}/>*/}
-                {/*            <button onClick={changeGroupInput}>Select group</button>*/}
-                {/*        </div> :*/}
-                {/*        <div className={"client-form__item"}>*/}
-                {/*            <FormSelect id={"group"} name={"group"} label={"Group"}*/}
-                {/*                        options={groups.map((group) => ({value: group.id, label: group.name}))}*/}
-                {/*                        register={register} defaultLabel={"all groups"}/>*/}
+                            <button className={"client-form__input-button"} onClick={changeGroupInput}>Add group</button>
+                        </div>
 
-                {/*            <button className={"client-form__button"} onClick={changeGroupInput}>Add group</button>*/}
-                {/*        </div>*/}
-
-                {/*}*/}
+                }
 
                 <div className={"client-form__item"}>
                     <FormSelect id={"status"} name={"status"} label={"Status"}

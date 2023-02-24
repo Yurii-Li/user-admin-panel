@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice, current} from "@reduxjs/toolkit";
 import {groupsService} from "../../services";
-import {patchOrder} from "./orders.slice";
 
 const initialState = {
     groups: [],
@@ -26,8 +25,6 @@ const getGroups = createAsyncThunk(
 const createGroup = createAsyncThunk( "groups/createGroup", async ( group, {rejectWithValue}) => {
     try {
         const {data} = await groupsService.createGroup({name: group});
-
-
         return data;
     } catch (e) {
         return rejectWithValue(e.response.data);
@@ -56,7 +53,6 @@ const groupsSlice = createSlice({
             })
 
             .addCase(createGroup.fulfilled, (state, action) => {
-                // console.log(action.payload)
                 state.groups.push(action.payload);
                 state.loading = false;
             })

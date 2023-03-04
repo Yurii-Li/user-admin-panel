@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
+
 import { ifNull } from "../../utils/helpers";
+
 import "./ordersStatistic.scss";
 
 const OrdersStatistic = () => {

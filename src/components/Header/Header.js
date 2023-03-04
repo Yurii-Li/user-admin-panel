@@ -1,7 +1,7 @@
-import { LogOut } from "../LogOut/LogOut";
-
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import { LogOut } from "../LogOut/LogOut";
 
 import "./header.scss";
 

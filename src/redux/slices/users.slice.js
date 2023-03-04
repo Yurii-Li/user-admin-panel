@@ -112,9 +112,6 @@ extraReducers: (builder) =>
         .addCase(userStatistic.rejected, (state, action) => {
             state.error = action.payload;
         })
-
-
-
 });
 
 

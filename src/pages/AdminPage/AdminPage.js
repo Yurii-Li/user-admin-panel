@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {CreateUserForm, Footer, Header, Modal, Spinner, User} from "../../components";
+import {CreateUserForm, Footer, Header, Modal, OrdersStatistic, Spinner, User} from "../../components";
 import {useDispatch, useSelector} from "react-redux";
-import {usersActions} from "../../redux/slices";
+import {ordersActions, usersActions} from "../../redux/slices";
 import "./adminPage.scss";
 
 
@@ -11,7 +11,8 @@ const AdminPage = () => {
 
     useEffect(() => {
         dispatch(usersActions.getUsers())
-    }, [dispatch])
+        dispatch(ordersActions.getOrdersStatistic());
+    }, [dispatch]);
 
     const {users, loading} = useSelector((state) => state.usersReducer);
 
@@ -24,14 +25,26 @@ const AdminPage = () => {
             <Header/>
 
             <div className={"admin-page__content"}>
-                <button className={"admin-page__button"} onClick={() => setOpenCreateUser(true)}>Create</button>
+                {
+                    loading ? <Spinner/> : <div>
 
 
-                <div className={"admin-page__users"}>
-                    {
-                        loading ? <Spinner/> : users.map((user) => <User key={user.id} user={user}/>)
-                    }
-                </div>
+                        <div className={"admin-page__statistic"}>
+                            <div className={"admin-page__title"}>Orders statistic</div>
+                            <OrdersStatistic/>
+                        </div>
+
+                        <button className={"admin-page__button"} onClick={() => setOpenCreateUser(true)}>Create</button>
+
+
+
+                        <div className={"admin-page__users"}>
+                            {
+                                users.map((user) => <User key={user.id} user={user}/>)
+                            }
+                        </div>
+                    </div>
+                }
             </div>
 
 

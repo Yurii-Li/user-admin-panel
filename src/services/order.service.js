@@ -6,6 +6,7 @@ const orderService = {
     patchOrder: (id, data) => axiosService.patch(`${urls.orders}/${id}`, data),
     addOrderComment: (id, data) => axiosService.post(`${urls.orders}/${id}/comments`, data),
     getExcel: (params) => axiosService.get(`${urls.orders}/excel`, { params , responseType: 'arraybuffer'}),
+    ordersStatistic: () => axiosService.get(urls.ordersStatistic),
 
 };
 

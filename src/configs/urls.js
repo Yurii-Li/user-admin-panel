@@ -9,8 +9,10 @@ const urls = {
     orders: `${baseURL}/orders`,
     adminProfile: `${baseURL}/users/my`,
     groups: `${baseURL}/groups`,
-
     users: `${baseURL}/admin/users`,
+    ordersStatistic: `${baseURL}/admin/statistic/orders`,
+    userStatistic: `${baseURL}/admin/statistic/users`,
+
 };
 
 export {baseURL, urls};

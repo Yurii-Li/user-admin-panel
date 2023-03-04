@@ -4,6 +4,7 @@ import {usersService} from "../../services";
 
 const initialState = {
     users: [],
+    userStatistic: {},
     count: 0,
     next : null,
     previous: null,
@@ -28,6 +29,34 @@ const createUser = createAsyncThunk("users/createUser", async (user, {rejectWith
         return rejectWithValue(e.response.data);
     }
 });
+
+const banUser = createAsyncThunk("users/banUser", async (id, {rejectWithValue}) => {
+    try {
+        const {data} = await usersService.banUser(id);
+        return data;
+    } catch (e) {
+        return rejectWithValue(e.response.data);
+    }
+});
+
+const unbanUser = createAsyncThunk("users/unbanUser", async (id, {rejectWithValue}) => {
+    try {
+        const {data} = await usersService.unbanUser(id);
+        return data;
+    } catch (e) {
+        return rejectWithValue(e.response.data);
+    }
+});
+
+const userStatistic = createAsyncThunk("users/userStatistic", async (id, {rejectWithValue}) => {
+    try {
+        const {data} = await usersService.userStatistic(id);
+        return data;
+    } catch (e) {
+        return rejectWithValue(e.response.data);
+    }
+});
+
 
 
 
@@ -61,6 +90,29 @@ extraReducers: (builder) =>
             state.error = action.payload;
         })
 
+        .addCase(banUser.fulfilled, (state, action) => {
+            const index = state.users.findIndex(user => user.id === action.payload.id);
+            state.users[index] = action.payload;
+        })
+        .addCase(banUser.rejected, (state, action) => {
+            state.error = action.payload;
+        })
+
+        .addCase(unbanUser.fulfilled, (state, action) => {
+            const index = state.users.findIndex(user => user.id === action.payload.id);
+            state.users[index] = action.payload;
+        })
+        .addCase(unbanUser.rejected, (state, action) => {
+            state.error = action.payload;
+        })
+
+        .addCase(userStatistic.fulfilled, (state, action) => {
+            state.userStatistic[action.meta.arg] = action.payload;
+        })
+        .addCase(userStatistic.rejected, (state, action) => {
+            state.error = action.payload;
+        })
+
 
 
 });
@@ -71,6 +123,9 @@ const { reducer: usersReducer } = usersSlice;
 const usersActions = {
     getUsers,
     createUser,
+    banUser,
+    unbanUser,
+    userStatistic,
 };
 
 export { usersReducer, usersActions };

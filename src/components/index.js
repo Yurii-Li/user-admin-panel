@@ -14,8 +14,10 @@ export * from './Modal/Modal';
 export * from './ModalComments/ModalComments';
 export * from './СlientForm/СlientForm';
 export * from './Order/Order';
+export * from './OrdersStatistic/OrdersStatistic';
 export * from './OrdersTable/OrdersTable';
 export * from './Pagination/Pagination';
 export * from "./SortOrders/SortOrders"
 export * from './Spinner/Spinner';
 export * from './User/User';
+export * from './UserStatistic/UserStatistic';

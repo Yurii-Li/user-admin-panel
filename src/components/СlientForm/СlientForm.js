@@ -166,7 +166,7 @@ const ClientForm = ({ setOpenModalForm, order }) => {
                 <div className={"client-form__item"}>
                     <FormInput
                         id={"phone"}
-                        type={"text"}
+                        type={"number"}
                         name={"phone"}
                         label={"Phone"}
                         register={register}

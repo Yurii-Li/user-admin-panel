@@ -1,18 +1,16 @@
-import { convertDate, ifNull } from "../../utils/helpers";
+import { useDispatch } from "react-redux";
+
 import { usersService } from "../../services";
+import { usersActions } from "../../redux/slices";
+import { convertDate, ifNull } from "../../utils/helpers";
+import { UserStatistic } from "../UserStatistic/UserStatistic";
 
 import "./user.scss";
-import { useDispatch } from "react-redux";
-import { usersActions } from "../../redux/slices";
-import { UserStatistic } from "../UserStatistic/UserStatistic";
-import { useEffect } from "react";
+
 
 const User = ({ user }) => {
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(usersActions.userStatistic(user.id));
-    // }, []);
 
     const activateUser = async () => {
         const { data } = await usersService.getActivateToken(user.id);

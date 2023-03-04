@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { usersActions } from "../../redux/slices";
 import {ifNull} from "../../utils/helpers";
+
 import "./userStatistic.scss";
 
 const UserStatistic = ({ id }) => {
@@ -9,7 +11,6 @@ const UserStatistic = ({ id }) => {
 
     useEffect(() => {
         dispatch(usersActions.userStatistic(id));
-        console.log('sss')
     }, []);
 
     const { userStatistic } = useSelector((state) => state.usersReducer);

@@ -48,8 +48,14 @@ const unbanUser = createAsyncThunk("users/unbanUser", async (id, {rejectWithValu
     }
 });
 
-const userStatistic = createAsyncThunk("users/userStatistic", async (id, {rejectWithValue}) => {
+const userStatistic = createAsyncThunk("users/userStatistic", async (id, {rejectWithValue, getState}) => {
     try {
+
+        const state = getState();
+        if (state.usersReducer.userStatistic[id]) {
+            return;
+        }
+
         const {data} = await usersService.userStatistic(id);
         return data;
     } catch (e) {

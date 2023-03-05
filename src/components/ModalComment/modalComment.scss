@@ -1,0 +1,25 @@
+.modal-comment{
+  border-bottom: 1px solid #ccc;
+
+  &__content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  &__text{
+    width: 80%;
+    margin-right: 20px;
+
+  }
+
+  &__addition-info{
+    display: flex;
+    gap: 10px;
+  }
+
+
+
+
+}

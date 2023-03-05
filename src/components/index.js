@@ -11,6 +11,7 @@ export * from './Header/Header';
 export * from './LoginForm/LoginForm';
 export * from "./LogOut/LogOut"
 export * from './Modal/Modal';
+export * from './ModalComment/ModalComment';
 export * from './ModalComments/ModalComments';
 export * from './СlientForm/СlientForm';
 export * from './Order/Order';

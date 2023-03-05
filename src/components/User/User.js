@@ -28,14 +28,12 @@ const User = ({ user }) => {
     return (
         <div className={"user"}>
             <div className={"user__info"}>
-                <div>
                     <div>id: {user.profile.id}</div>
                     <div>email: {user.email}</div>
                     <div>name: {user.profile.name}</div>
                     <div>surname: {user.profile.surname}</div>
                     <div>is_active: {user.is_active.toString()}</div>
                     <div>last_login: {convertDate(ifNull(user.last_login))}</div>
-                </div>
             </div>
 
                 <UserStatistic id={user.id} />

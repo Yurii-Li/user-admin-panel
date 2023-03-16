@@ -19,6 +19,17 @@
 
   &__button {
     padding: 15px;
+
+    &_disabled {
+      cursor: not-allowed;
+        background-color: #C0C0C0FF;
+      &:hover {
+        background-color: #C0C0C0FF;
+      }
+
+    }
+
   }
+
 
 }

@@ -6,6 +6,7 @@ import { Comment } from "../Comment/Comment";
 import { ModalComments } from "../ModalComments/ModalComments";
 import { ClientForm } from "../СlientForm/СlientForm";
 import { Modal } from "../Modal/Modal";
+import {useSelector} from "react-redux";
 
 const Order = ({ order }) => {
     const {
@@ -29,12 +30,16 @@ const Order = ({ order }) => {
         msg,
     } = order;
 
-    // Подумай над redux-toolkit чи доцільно це виносити туди
+
     const [tableActive, setTableActive] = useState(false);
 
     const [openModalForm, setOpenModalForm] = useState(false);
 
     const [openModalComments, setOpenModalComments] = useState(false);
+
+    const { adminProfile } = useSelector((state) => state.adminProfileReducer);
+
+    const isButtonDisabled = manager !== null && adminProfile?.profile.name !== manager?.name;
 
     return (
         <div
@@ -119,10 +124,10 @@ const Order = ({ order }) => {
                                       .map((item) => <Comment key={item.id} item={item} />)}
                         </div>
 
-                        <CommentForm id={id} />
+                        <CommentForm id={id} isButtonDisabled={isButtonDisabled} adminProfile={adminProfile}/>
                     </div>
 
-                    <button onClick={() => setOpenModalForm(true)} className={"orders-table__button"}>
+                    <button onClick={() => setOpenModalForm(true)} className={`orders-table__button ${isButtonDisabled ? "orders-table__button_disabled" : ""}`} disabled={isButtonDisabled}>
                         Edit
                     </button>
 

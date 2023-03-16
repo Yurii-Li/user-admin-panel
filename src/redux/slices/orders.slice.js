@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { orderService } from "../../services";
 
@@ -89,9 +89,19 @@ const ordersSlice = createSlice({
             })
 
             .addCase(addOrderComment.fulfilled, (state, action) => {
-                const order = state.orders.find((order) => order.id === action.payload.order_id);
-                order.comments.unshift(action.payload);
+                state.orders = state.orders.map((order) => {
+                    if (order.id === action.payload.order_id) {
+                        return {
+                            ...order,
+                            comments: [...order.comments, action.payload],
+                            status: "В работе",
+                            manager: action.payload.manager
+                        };
+                    }
+                    return order;
+                });
             })
+
             .addCase(addOrderComment.rejected, (state, action) => {
                 state.error = action.payload;
             })
@@ -104,7 +114,7 @@ const ordersSlice = createSlice({
             })
             .addCase(getOrdersStatistic.pending, (state, action) => {
                 state.loading = true;
-            })
+            }),
 });
 
 const { reducer: ordersReducer } = ordersSlice;

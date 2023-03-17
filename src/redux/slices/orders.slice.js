@@ -93,7 +93,7 @@ const ordersSlice = createSlice({
                     if (order.id === action.payload.order_id) {
                         return {
                             ...order,
-                            comments: [...order.comments, action.payload],
+                            comments: [ action.payload, ...order.comments ],
                             status: "В работе",
                             manager: action.payload.manager
                         };

@@ -41,6 +41,8 @@ const Order = ({ order }) => {
 
     const isButtonDisabled = manager !== null && adminProfile?.profile.name !== manager?.name;
 
+    console.log(comments);
+
     return (
         <div
             className={`orders-table__row  ${
@@ -115,14 +117,15 @@ const Order = ({ order }) => {
 
                 <div className={"orders-table__details-right"}>
                     <div className={"orders-table__content"}>
-                        <div onClick={() => setOpenModalComments(true)} className={"orders-table__comments"}>
-                            {comments.length === 0
-                                ? "null"
-                                : comments
-                                      .slice(0, 3)
-                                      .reverse()
-                                      .map((item) => <Comment key={item.id} item={item} />)}
-                        </div>
+                        {
+                            comments.length > 0 && (
+                                <div onClick={() => setOpenModalComments(true)} className={"orders-table__comments"}>
+                                    {comments.slice(0,3)
+                                        .map((item) => <Comment key={item.id} item={item} />)
+                                    }
+                                </div>
+                            )
+                        }
 
                         <CommentForm id={id} isButtonDisabled={isButtonDisabled} adminProfile={adminProfile}/>
                     </div>

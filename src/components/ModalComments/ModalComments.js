@@ -17,8 +17,7 @@ const ModalComments = ({ comments, setOpenModalComments }) => {
 
     return (
         <div className={"modal-comments"}>
-            <div>{comments.length === 0 ? "null" :
-                currentComments.map((item, index) => {
+            <div>{currentComments.map((item, index) => {
                     return <ModalComment key={index} item={item}/>
                 })
             }

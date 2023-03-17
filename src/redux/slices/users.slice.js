@@ -90,7 +90,7 @@ extraReducers: (builder) =>
         })
 
         .addCase(createUser.fulfilled, (state, action) => {
-            state.users.unshift(action.payload);
+            state.users = [action.payload, ...state.users]
         })
         .addCase(createUser.rejected, (state, action) => {
             state.error = action.payload;

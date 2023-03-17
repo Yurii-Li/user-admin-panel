@@ -57,6 +57,7 @@ const OrdersPage = () => {
             } else {
                 value.set("order", field);
             }
+            value.set("page", "1");
             return value;
         });
     };

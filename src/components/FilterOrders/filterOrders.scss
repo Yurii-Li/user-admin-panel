@@ -4,19 +4,16 @@
   display: flex;
   padding: 5px;
 
-
   &__inputs {
     display: flex;
     flex-wrap: wrap;
   }
 
-
   &__input {
     padding: 3px 5px;
     margin: 0 auto;
-    width: calc(16.66% )
+    width: calc(16.66%)
   }
-
 
   &__checkbox-button {
     display: flex;
@@ -40,7 +37,6 @@
 
   &__checkbox:checked {
     accent-color: #43A047;
-
   }
 
   &__button {
@@ -50,7 +46,7 @@
     padding: 5px;
   }
 
-  &__button-img{
+  &__button-img {
     width: 1.625rem;
   }
 

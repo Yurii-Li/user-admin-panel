@@ -74,12 +74,6 @@ const userStatistic = createAsyncThunk("users/userStatistic", async (id, {reject
 });
 
 
-
-
-
-
-
-
 const usersSlice = createSlice({
 name: "users",
 initialState,
@@ -114,16 +108,14 @@ extraReducers: (builder) =>
         })
 
         .addCase(banUser.fulfilled, (state, action) => {
-            const index = state.users.findIndex(user => user.id === action.payload.id);
-            state.users[index] = action.payload;
+            state.users = state.users.map(user =>  user.id === action.payload.id ? action.payload : user);
         })
         .addCase(banUser.rejected, (state, action) => {
             state.error = action.payload;
         })
 
         .addCase(unbanUser.fulfilled, (state, action) => {
-            const index = state.users.findIndex(user => user.id === action.payload.id);
-            state.users[index] = action.payload;
+            state.users = state.users.map(user =>  user.id === action.payload.id ? action.payload : user);
         })
         .addCase(unbanUser.rejected, (state, action) => {
             state.error = action.payload;
@@ -131,6 +123,7 @@ extraReducers: (builder) =>
 
         .addCase(userStatistic.fulfilled, (state, action) => {
             state.userStatistic[action.meta.arg] = action.payload;
+
         })
         .addCase(userStatistic.rejected, (state, action) => {
             state.error = action.payload;

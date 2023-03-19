@@ -18,13 +18,11 @@ function App() {
                     <Route path="/orders" element={<OrdersPage/>}/>
                 </Route>
 
-
                 <Route element={<PrivateRouteAdmin/>}>
                     <Route path="/adminPanel" element={<AdminPage/>}/>
                 </Route>
 
                 <Route path="/activate/:token" element={<ActivateUserPage/>}/>
-
 
                 <Route path="*" element={<Page404/>}/>
             </Route>

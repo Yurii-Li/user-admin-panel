@@ -12,7 +12,6 @@ const urls = {
     users: `${baseURL}/admin/users`,
     ordersStatistic: `${baseURL}/admin/statistic/orders`,
     userStatistic: `${baseURL}/admin/statistic/users`,
-
 };
 
-export {baseURL, urls};
+export { baseURL, urls };

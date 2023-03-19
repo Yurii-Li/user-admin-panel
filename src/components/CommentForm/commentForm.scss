@@ -22,7 +22,8 @@
 
     &_disabled {
       cursor: not-allowed;
-        background-color: #C0C0C0FF;
+      background-color: #C0C0C0FF;
+
       &:hover {
         background-color: #C0C0C0FF;
       }
@@ -30,6 +31,5 @@
     }
 
   }
-
 
 }

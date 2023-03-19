@@ -2,7 +2,7 @@ import {axiosService} from "./axios.service";
 import {urls} from "../configs";
 
 const groupsService = {
-    getGroups: () => axiosService.get(urls.groups),
+    getGroups: (page) => axiosService.get(urls.groups, {params: {page}}),
     createGroup: (data) => axiosService.post(urls.groups, data),
 }
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useSelector} from "react-redux";
 
 import { convertDate, ifNull } from "../../utils/helpers";
 import { CommentForm } from "../CommentForm/CommentForm";
@@ -6,7 +7,7 @@ import { Comment } from "../Comment/Comment";
 import { ModalComments } from "../ModalComments/ModalComments";
 import { ClientForm } from "../СlientForm/СlientForm";
 import { Modal } from "../Modal/Modal";
-import {useSelector} from "react-redux";
+
 
 const Order = ({ order }) => {
     const {
@@ -41,7 +42,6 @@ const Order = ({ order }) => {
 
     const isButtonDisabled = manager !== null && adminProfile?.profile.name !== manager?.name;
 
-    console.log(comments);
 
     return (
         <div

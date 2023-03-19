@@ -1,8 +1,8 @@
-import {convertDate} from "../../utils/helpers";
+import { convertDate } from "../../utils/helpers";
 
 import "./modalComment.scss";
 
-const ModalComment = ({item}) => {
+const ModalComment = ({ item }) => {
     return (
         <div className={"modal-comment"}>
             <div className={"modal-comment__content"}>
@@ -19,4 +19,4 @@ const ModalComment = ({item}) => {
     );
 };
 
-export {ModalComment};
+export { ModalComment };

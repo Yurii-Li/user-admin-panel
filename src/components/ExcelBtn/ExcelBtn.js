@@ -23,7 +23,9 @@ const ExcelBtn = () => {
     };
 
     return (
-        <button onClick={downloadExcel} className={"excel-btn"}><img  className={"excel-btn__img"}  src={xls} alt="xls" /> </button>
+        <button onClick={downloadExcel} className={"excel-btn"}>
+            <img className={"excel-btn__img"} src={xls} alt="xls" />
+        </button>
     );
 };
 

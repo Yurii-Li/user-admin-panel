@@ -17,4 +17,4 @@ const Comment = ({ item }) => {
     );
 };
 
-export {Comment};
+export { Comment };

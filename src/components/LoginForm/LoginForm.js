@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,8 +9,6 @@ import { FormInput } from "../FormInput/FormInput";
 import "./loginForm.scss";
 
 const LoginForm = () => {
-    const navigate = useNavigate();
-
     const {
         handleSubmit,
         register,
@@ -29,7 +26,8 @@ const LoginForm = () => {
         dispatch(authActions.login(user));
     };
 
-    const errorMsg = error?.detail === "No active account found with the given credentials"
+    const errorMsg =
+        error?.detail === "No active account found with the given credentials"
             ? "Wrong email or password"
             : "Something went wrong";
 

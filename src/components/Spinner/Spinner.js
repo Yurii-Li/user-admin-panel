@@ -40,4 +40,4 @@ const Spinner = () => {
     );
 };
 
-export {Spinner};
+export { Spinner };

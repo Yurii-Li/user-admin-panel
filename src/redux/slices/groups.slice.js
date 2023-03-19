@@ -4,17 +4,17 @@ import {groupsService} from "../../services";
 const initialState = {
     groups: [],
     count: 0,
-    previous: null,
-    next: null,
-    loading: false,
+    previousPageGroups: null,
+    nextPageGroups: null,
+    loadingGroups: false,
     error: null,
 }
 
 const getGroups = createAsyncThunk(
     "groups/getGroups",
-    async (_, {rejectWithValue}) => {
+    async (page, {rejectWithValue}) => {
         try {
-            const {data} = await groupsService.getGroups();
+            const {data} = await groupsService.getGroups(page);
             return data;
         } catch (e) {
             return rejectWithValue(e.response.data);
@@ -38,23 +38,23 @@ const groupsSlice = createSlice({
     extraReducers: (builder) =>
         builder
             .addCase(getGroups.fulfilled, (state, action) => {
-                state.groups = action.payload.results;
+                state.groups = [...state.groups, ...action.payload.results]
                 state.count = action.payload.count;
-                state.previous = action.payload.previous;
-                state.next = action.payload.next;
-                state.loading = false;
+                state.previousPageGroups = action.payload.previous;
+                state.nextPageGroups = action.payload.next;
+                state.loadingGroups = false;
             })
             .addCase(getGroups.rejected, (state, action) => {
                 state.error = action.payload;
 
             })
             .addCase(getGroups.pending, (state, action) => {
-                state.loading = true;
+                state.loadingGroups = true;
             })
 
             .addCase(createGroup.fulfilled, (state, action) => {
-                state.groups.push(action.payload);
-                state.loading = false;
+                state.groups = [...state.groups, action.payload];
+                state.loadingGroups = false;
             })
             .addCase(createGroup.rejected, (state, action) => {
                 state.error = action.payload;

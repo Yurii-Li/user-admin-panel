@@ -73,4 +73,4 @@ const Pagination = (props) => {
     );
 };
 
-export {Pagination}
+export { Pagination };

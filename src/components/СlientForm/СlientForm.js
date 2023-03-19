@@ -10,7 +10,6 @@ import { FormInput } from "../FormInput/FormInput";
 
 import "./clientForm.scss";
 
-
 const ClientForm = ({ setOpenModalForm, order }) => {
     const { id, name, surname, email, phone, age, course, course_format, course_type, status, sum, alreadyPaid, group, manager } =
         order;
@@ -21,7 +20,7 @@ const ClientForm = ({ setOpenModalForm, order }) => {
         handleSubmit,
         register,
         setValue,
-        formState: { errors, isValid },
+        formState: { errors },
     } = useForm({
         mode: "all",
         defaultValues: {
@@ -47,7 +46,6 @@ const ClientForm = ({ setOpenModalForm, order }) => {
 
     const submit = (data) => {
         if (groupInput) {
-
             dispatch(groupsActions.createGroup(data.group));
         } else {
             dispatch(ordersActions.patchOrder({ id, data }));
@@ -63,7 +61,6 @@ const ClientForm = ({ setOpenModalForm, order }) => {
     return (
         <form className={"client-form"} onSubmit={handleSubmit(submit)}>
             <div className={"client-form__inputs"}>
-
                 {groupInput ? (
                     <div className={"client-form__item  client-form__item_row"}>
                         <FormInput
@@ -213,6 +210,4 @@ const ClientForm = ({ setOpenModalForm, order }) => {
     );
 };
 
-export {
-    ClientForm
-};
+export { ClientForm };

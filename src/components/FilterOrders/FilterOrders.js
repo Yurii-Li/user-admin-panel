@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
+import { groupsActions } from "../../redux/slices";
 import { FormInput } from "../FormInput/FormInput";
 import { FormSelect } from "../FormSelect/FormSelect";
 
@@ -9,10 +11,29 @@ import "./filterOrders.scss";
 import resetImg from "../../resources/img/reset.svg";
 
 const FilterOrders = ({ setParams }) => {
-    const { adminProfile } = useSelector((state) => state.adminProfileReducer);
-    const { groups } = useSelector((state) => state.groupsReducer);
+    const dispatch = useDispatch();
 
     const { register, reset } = useForm({ mode: "all" });
+
+    const { adminProfile } = useSelector((state) => state.adminProfileReducer);
+    const { groups, nextPageGroups, loadingGroups } = useSelector((state) => state.groupsReducer);
+
+    useEffect(() => {
+        dispatch(groupsActions.getGroups());
+    }, [dispatch]);
+
+    useEffect(() => {
+        loadingAllGroups();
+    }, [loadingGroups, nextPageGroups]);
+
+    const loadingAllGroups = () => {
+        if (!loadingGroups && nextPageGroups) {
+            const url = new URL(nextPageGroups);
+            const params = new URLSearchParams(url.search);
+            const page = params.get("page");
+            dispatch(groupsActions.getGroups(page));
+        }
+    };
 
     const resetForm = () => {
         reset();
@@ -141,4 +162,4 @@ const FilterOrders = ({ setParams }) => {
     );
 };
 
-export {FilterOrders};
+export { FilterOrders };

@@ -1,7 +1,9 @@
-import "./modalComments.scss";
-import {ModalComment} from "../ModalComment/ModalComment";
 import {useMemo, useState} from "react";
+
+import {ModalComment} from "../ModalComment/ModalComment";
 import {Pagination} from "../Pagination/Pagination";
+
+import "./modalComments.scss";
 
 let PageSize = 5;
 

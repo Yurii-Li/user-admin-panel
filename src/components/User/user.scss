@@ -7,15 +7,13 @@
   border: 2px solid $main-color;
   border-radius: 10px;
 
-  &__info{
+  &__info {
     display: flex;
     flex-direction: column;
     width: 12.5rem;
   }
 
-
-
-  &__buttons{
+  &__buttons {
     display: flex;
     justify-content: center;
     align-items: center;

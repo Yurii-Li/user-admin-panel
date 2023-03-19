@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { ordersActions } from "../../redux/slices";
@@ -19,7 +19,6 @@ const CommentForm = ({ id, isButtonDisabled, adminProfile }) => {
         resolver: yupResolver(commentValidator),
     });
 
-
     const dispatch = useDispatch();
 
     const submit = async (data) => {
@@ -35,10 +34,6 @@ const CommentForm = ({ id, isButtonDisabled, adminProfile }) => {
         reset();
     };
 
-
-
-
-
     return (
         <form className={"comment-form"} onSubmit={handleSubmit(submit)}>
             <FormInput
@@ -51,13 +46,15 @@ const CommentForm = ({ id, isButtonDisabled, adminProfile }) => {
                 type={"text"}
             />
 
-            <button className={`comment-form__button ${isButtonDisabled || !isValid ? 'comment-form__button_disabled' : ""}`} type={"submit"} disabled={isButtonDisabled || !isValid  }>
+            <button
+                className={`comment-form__button ${isButtonDisabled || !isValid ? "comment-form__button_disabled" : ""}`}
+                type={"submit"}
+                disabled={isButtonDisabled || !isValid}
+            >
                 submit
             </button>
         </form>
     );
 };
 
-export {
-    CommentForm
-};
+export { CommentForm };

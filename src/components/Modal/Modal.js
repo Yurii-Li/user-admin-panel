@@ -10,4 +10,4 @@ const Modal = (props) => {
     );
 };
 
-export {Modal};
+export { Modal };

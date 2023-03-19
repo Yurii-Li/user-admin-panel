@@ -5,7 +5,7 @@ import { useDebounce } from "../../hooks";
 
 
 import {ExcelBtn, FilterOrders, Footer, Header, OrdersTable, Pagination, Spinner} from "../../components";
-import {adminProfileActions, groupsActions, ordersActions} from "../../redux/slices";
+import {adminProfileActions , ordersActions} from "../../redux/slices";
 
 import "./ordersPage.scss";
 
@@ -16,16 +16,16 @@ const OrdersPage = () => {
 
     const debouncedQuery = useDebounce(query, 500);
 
+    const { orders, totalCount, loading } = useSelector((state) => state.ordersReducer);
+
+
     useEffect(() => {
         dispatch(ordersActions.getOrdersByFilter(debouncedQuery));
     }, [dispatch, debouncedQuery]);
 
     useEffect(() => {
         dispatch(adminProfileActions.getAdminProfile());
-        dispatch(groupsActions.getGroups())
     }, [dispatch]);
-
-    const { orders, totalCount, loading } = useSelector((state) => state.ordersReducer);
 
     const setParams = (e) => {
         const text = e.target.value;

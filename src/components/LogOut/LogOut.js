@@ -21,4 +21,4 @@ const LogOut = () => {
     );
 };
 
-export {LogOut};
+export { LogOut };

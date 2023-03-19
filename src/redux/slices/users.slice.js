@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {usersService} from "../../services";
+import {history, usersService} from "../../services";
 
 
 const initialState = {
@@ -29,6 +29,16 @@ const createUser = createAsyncThunk("users/createUser", async (user, {rejectWith
         return rejectWithValue(e.response.data);
     }
 });
+
+const activateUser = createAsyncThunk("users/activateUser", async ({token, password}, {rejectWithValue}) => {
+try {
+        const {data} = await usersService.activateUser(token, password);
+        return data;
+    } catch (e) {
+        return rejectWithValue(e.response.data);
+    }
+});
+
 
 const banUser = createAsyncThunk("users/banUser", async (id, {rejectWithValue}) => {
     try {
@@ -96,6 +106,13 @@ extraReducers: (builder) =>
             state.error = action.payload;
         })
 
+        .addCase(activateUser.fulfilled, (state, action) => {
+            history.replace("/login");
+        })
+        .addCase(activateUser.rejected, (state, action) => {
+            state.error = action.payload;
+        })
+
         .addCase(banUser.fulfilled, (state, action) => {
             const index = state.users.findIndex(user => user.id === action.payload.id);
             state.users[index] = action.payload;
@@ -126,6 +143,7 @@ const { reducer: usersReducer } = usersSlice;
 const usersActions = {
     getUsers,
     createUser,
+    activateUser,
     banUser,
     unbanUser,
     userStatistic,

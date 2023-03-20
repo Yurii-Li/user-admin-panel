@@ -48,7 +48,10 @@ const ClientForm = ({ setOpenModalForm, order }) => {
         if (groupInput) {
             dispatch(groupsActions.createGroup(data.group));
         } else {
-            dispatch(ordersActions.patchOrder({ id, data }));
+            const cleanedData = Object.fromEntries(
+                Object.entries(data).filter(([key, value]) => value !== "")
+            );
+            dispatch(ordersActions.patchOrder({ id, data: cleanedData }));
         }
     };
 

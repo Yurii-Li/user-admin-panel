@@ -94,7 +94,7 @@ extraReducers: (builder) =>
         })
 
         .addCase(createUser.fulfilled, (state, action) => {
-            state.users = [action.payload, ...state.users]
+            state.users.unshift(action.payload);
         })
         .addCase(createUser.rejected, (state, action) => {
             state.error = action.payload;
@@ -108,14 +108,16 @@ extraReducers: (builder) =>
         })
 
         .addCase(banUser.fulfilled, (state, action) => {
-            state.users = state.users.map(user =>  user.id === action.payload.id ? action.payload : user);
+            const user = state.users.find(user => user.id === action.payload.id);
+            user.is_active = action.payload.is_active;
         })
         .addCase(banUser.rejected, (state, action) => {
             state.error = action.payload;
         })
 
         .addCase(unbanUser.fulfilled, (state, action) => {
-            state.users = state.users.map(user =>  user.id === action.payload.id ? action.payload : user);
+            const user = state.users.find(user => user.id === action.payload.id);
+            user.is_active = action.payload.is_active;
         })
         .addCase(unbanUser.rejected, (state, action) => {
             state.error = action.payload;

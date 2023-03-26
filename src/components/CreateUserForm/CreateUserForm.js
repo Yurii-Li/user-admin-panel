@@ -1,18 +1,23 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import {yupResolver} from "@hookform/resolvers/yup";
 
 import { FormInput } from "../FormInput/FormInput";
 import { usersActions } from "../../redux/slices";
+import {createUserValidator} from "../../validators";
 
 import "./createUserForm.scss";
+
+
 
 const CreateUserForm = ({ setOpenCreateUser }) => {
     const {
         handleSubmit,
         register,
-        formState: { errors, isValid },
+        formState: { errors },
     } = useForm({
         mode: "all",
+        resolver: yupResolver(createUserValidator),
     });
 
     const dispatch = useDispatch();
@@ -27,6 +32,7 @@ const CreateUserForm = ({ setOpenCreateUser }) => {
         };
 
         dispatch(usersActions.createUser(dataToSend));
+        setOpenCreateUser(false);
     };
 
     return (

@@ -75,8 +75,9 @@ const ordersSlice = createSlice({
             })
 
             .addCase(patchOrder.fulfilled, (state, action) => {
+                const findIndex = state.orders.findIndex((order) => order.id === action.payload.id);
+                state.orders[findIndex] = action.payload;
                 state.loading = false;
-                state.orders = state.orders.map(order => order.id === action.payload.id ? action.payload : order);
             })
             .addCase(patchOrder.rejected, (state, action) => {
                 state.error = action.payload;

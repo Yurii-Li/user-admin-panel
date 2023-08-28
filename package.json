@@ -20,7 +20,8 @@
     "react-scripts": "5.0.1",
     "sass": "^1.57.1",
     "web-vitals": "^2.1.4",
-    "yup": "^1.0.0"
+    "yup": "^1.0.0",
+    "npm-watch": "^0.11.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
@@ -28,9 +29,18 @@
     "@types/react-dom": "^18.0.10",
     "@types/react-redux": "^7.1.25"
   },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js, jsx, css, scss"
+    }
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "watch": "npm-watch",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

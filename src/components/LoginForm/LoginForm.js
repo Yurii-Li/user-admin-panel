@@ -47,6 +47,9 @@ const LoginForm = () => {
             <button className={"login-form__btn button"} disabled={!isValid}>
                 {loading ? "Loading..." : "Login"}
             </button>
+
+            <span>Email: admin@gmail.com</span>
+            <span>Password: admin2000</span>
         </form>
     );
 };

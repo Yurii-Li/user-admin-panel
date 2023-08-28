@@ -6,6 +6,7 @@ import { LogOut } from "../LogOut/LogOut";
 import "./header.scss";
 
 import adminImg from "../../resources/img/admin.svg";
+import logoImg from "../../resources/img/logo.png";
 
 const Header = () => {
     const { adminProfile } = useSelector((state) => state.adminProfileReducer);
@@ -15,7 +16,7 @@ const Header = () => {
     return (
         <header className={"header"}>
             <div onClick={() => navigate("/orders")} className={"header__logo"}>
-                Logo
+                <img className={"header__logo-img"} src={logoImg} alt="logo" />
             </div>
             <div className={"header__content"}>
                 <div className={"header__name"}>{adminProfile?.profile.name}</div>
